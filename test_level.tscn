@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlvuef2alnou7"]
 
 [ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://ddkiuueuc1vcq" path="res://platform.tscn" id="2_1c2mv"]
 
 [node name="root" type="Node2D" unique_id=692275446]
 
@@ -9,5 +10,13 @@ offset_right = 504.0
 offset_bottom = 402.0
 color = Color(1, 0.27450982, 1, 1)
 
-[node name="Player" parent="Background" unique_id=943026036 instance=ExtResource("1_gojnm")]
-position = Vector2(93.35278, 101.68683)
+[node name="Player" parent="." unique_id=943026036 instance=ExtResource("1_gojnm")]
+position = Vector2(88, 196)
+
+[node name="floor" parent="." unique_id=1079251184 instance=ExtResource("2_1c2mv")]
+position = Vector2(247, 303)
+scale = Vector2(15.572197, 0.50651026)
+
+[node name="platform2" parent="." unique_id=1074912944 instance=ExtResource("2_1c2mv")]
+position = Vector2(154, 242.00002)
+scale = Vector2(4.391286, 0.56132376)
