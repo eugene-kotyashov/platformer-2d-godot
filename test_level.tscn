@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dlvuef2alnou7"]
+
+[ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player.tscn" id="1_gojnm"]
+
+[node name="root" type="Node2D" unique_id=692275446]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1051212306]
+offset_right = 504.0
+offset_bottom = 402.0
+color = Color(1, 0.27450982, 1, 1)
+
+[node name="Player" parent="Background" unique_id=943026036 instance=ExtResource("1_gojnm")]
+position = Vector2(93.35278, 101.68683)
