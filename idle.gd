@@ -4,4 +4,5 @@ func _ready() -> void:
 	name = "idle_state"
 	
 func update(_delta: float) -> void:
-	print("idling")
+	pass
+	# print("idling")

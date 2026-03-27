@@ -1,12 +1,11 @@
 extends State
 
+@export var jump_speed: float = -100
+
 func _ready() -> void:
 	name="jump_state"
-	
-func on_enter() -> void:
-	char_body.velocity.y += 10
 
 func update(delta: float) -> void:
 	print("jumping")
-	char_body.velocity += delta*char_body.gravity
+	char_body.velocity.y += jump_speed
 	char_body.move_and_slide()
