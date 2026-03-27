@@ -134,6 +134,14 @@ animation = &"walk"
 frame = 6
 frame_progress = 0.008586777
 
+[node name="RightCast" type="RayCast2D" parent="." unique_id=1301690860]
+position = Vector2(8, 1)
+target_position = Vector2(0, 13)
+
+[node name="LeftCast" type="RayCast2D" parent="." unique_id=394935774]
+position = Vector2(-7, 0)
+target_position = Vector2(0, 14)
+
 [node name="StateMachine" type="Node" parent="." unique_id=478951977 node_paths=PackedStringArray("current_state", "character_body")]
 script = ExtResource("3_qi2p4")
 current_state = NodePath("Walk")
@@ -142,7 +150,7 @@ metadata/_custom_type_script = "uid://pxa5p6cbjam6"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1112817797 node_paths=PackedStringArray("animations")]
 script = ExtResource("4_pmsee")
-speed = 15.0
+speed = 30.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"walk"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"

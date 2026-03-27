@@ -7,5 +7,6 @@ func _ready() -> void:
 
 func update(_delta: float) -> void:
 	# print("walking")
-	char_body.velocity.x = speed
+	animations.flip_h = (char_body.move_direction<0)
+	char_body.velocity.x = char_body.move_direction*speed
 	char_body.move_and_slide()

@@ -4,6 +4,8 @@ extends CharacterController
 @export var attack_damage: float = 10
 @export var state_machine: StateMachine
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
+@onready var left_cast : RayCast2D = $LeftCast
+@onready var right_cast : RayCast2D = $RightCast
 
 var target_player: CharacterController
 var gravity: Vector2 = Vector2(0, 100)
@@ -13,6 +15,10 @@ var health: float
 
 func _physics_process(_delta: float) -> void:
 	if is_on_floor():
+		if !right_cast.is_colliding() && left_cast.is_colliding():
+			move_direction = -1
+		if right_cast.is_colliding() && !left_cast.is_colliding():
+			move_direction = 1
 		state_machine.transition("walk_state")
 	else:
 		state_machine.transition("air_state")

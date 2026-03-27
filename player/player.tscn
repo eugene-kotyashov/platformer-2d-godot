@@ -245,6 +245,7 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Jump" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations")]
 script = ExtResource("7_1jxqw")
+jump_speed = -120.0
 animations = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 

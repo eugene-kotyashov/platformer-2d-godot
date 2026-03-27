@@ -11,11 +11,11 @@ offset_right = 504.0
 offset_bottom = 402.0
 color = Color(1, 0.27450982, 1, 1)
 
-[node name="Player" parent="." unique_id=943026036 instance=ExtResource("1_gojnm")]
-position = Vector2(88, 196)
+[node name="Enemy" parent="." unique_id=1241616080 instance=ExtResource("2_f7g2b")]
+position = Vector2(153, 193)
 
-[node name="Enemy" parent="Player" unique_id=1241616080 instance=ExtResource("2_f7g2b")]
-position = Vector2(138.14922, -7.8210144)
+[node name="Player" parent="." unique_id=943026036 instance=ExtResource("1_gojnm")]
+position = Vector2(161, 269)
 
 [node name="floor" parent="." unique_id=1079251184 instance=ExtResource("2_1c2mv")]
 position = Vector2(247, 303)
