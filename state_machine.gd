@@ -1,18 +1,19 @@
 extends Node
 class_name StateMachine
 
-var current_state: State
-@export var char_body: CharacterController
+@export var current_state: State
+@export var character_body : CharacterBody2D
 var states : Dictionary = {}
 
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
-	print("loaded states")
+			child.char_body = character_body
+	print("enemy loaded states")
 	for state_name in states.keys():
 		print(state_name)
-	current_state = states["idle_state"]
+	
 
 # Called when the node enters the scene tree for the first time.
 func transition(new_state_name: String):
@@ -28,4 +29,5 @@ func transition(new_state_name: String):
 		
 			
 func _physics_process(delta: float) -> void:
-	current_state.update(delta)
+	if current_state:
+		current_state.update(delta)

@@ -7,8 +7,8 @@ func _ready() -> void:
 
 func update(delta: float) -> void:
 	char_body.velocity += char_body.gravity*delta
-	var dir=Input.get_axis("ui_left", "ui_right")
+	var dir=char_body.move_direction
 	animations.flip_h = (dir < 0)
 	char_body.velocity.x = dir*speed
 	char_body.move_and_slide()
-	print(name)
+	# print(name)

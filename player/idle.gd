@@ -5,4 +5,4 @@ func _ready() -> void:
 	
 func update(_delta: float) -> void:
 	pass
-	# print("idling")
+	print("idling")

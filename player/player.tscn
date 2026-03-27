@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://ddpkv74m0hoto"]
 
 [ext_resource type="Texture2D" uid="uid://dfp1rwmu1d301" path="res://art/Soldier.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bao7dcp7l8qmm" path="res://character_controller.gd" id="1_onrkg"]
-[ext_resource type="Script" uid="uid://365dajku2lyx" path="res://idle.gd" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://d1wput3twumvt" path="res://player/player_controller.gd" id="1_rgyib"]
+[ext_resource type="Script" uid="uid://365dajku2lyx" path="res://player/idle.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://pxa5p6cbjam6" path="res://state_machine.gd" id="4_hqtel"]
-[ext_resource type="Script" uid="uid://cwq6b5cfh7y0h" path="res://walk.gd" id="5_sweqy"]
-[ext_resource type="Script" uid="uid://cfo1aic3ww64d" path="res://air.gd" id="6_2hs0m"]
-[ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://jump.gd" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://cwq6b5cfh7y0h" path="res://player/walk.gd" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://cfo1aic3ww64d" path="res://player/air.gd" id="6_2hs0m"]
+[ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://player/jump.gd" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://pxv0btx0m22c" path="res://player/attack_1.gd" id="8_dw050"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw050"]
+radius = 8.995824
+height = 36.044216
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 9.0
@@ -19,6 +24,30 @@ region = Rect2(0, 100, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
 atlas = ExtResource("1_4flbx")
 region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q13i1"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pylmc"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(500, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -91,6 +120,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_q13i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pylmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbfsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tmop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ahtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lmhl")
+}],
+"loop": true,
+"name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_onrkg")
 }, {
 "duration": 1.0,
@@ -145,8 +197,15 @@ animations = [{
 [node name="Player" type="Node2D" unique_id=943026036]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=889163836 node_paths=PackedStringArray("state_machine")]
-script = ExtResource("1_onrkg")
+script = ExtResource("1_rgyib")
 state_machine = NodePath("StateMachine")
+
+[node name="Attack1Area" type="Area2D" parent="CharacterBody2D" unique_id=766998856]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Attack1Area" unique_id=1085190739]
+position = Vector2(4, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dw050")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1261421039]
 position = Vector2(0, -2)
@@ -154,42 +213,44 @@ shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1741906832]
 sprite_frames = SubResource("SpriteFrames_sh265")
-animation = &"air"
-frame = 1
-frame_progress = 0.99404234
+animation = &"attack1"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=611533730]
 limit_enabled = false
 
-[node name="StateMachine" type="Node" parent="CharacterBody2D" unique_id=1370254779 node_paths=PackedStringArray("char_body")]
+[node name="StateMachine" type="Node" parent="CharacterBody2D" unique_id=1370254779 node_paths=PackedStringArray("current_state", "character_body")]
 script = ExtResource("4_hqtel")
-char_body = NodePath("..")
+current_state = NodePath("Idle")
+character_body = NodePath("..")
 
-[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine" unique_id=38853823 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine" unique_id=38853823 node_paths=PackedStringArray("animations")]
 script = ExtResource("3_i3pqv")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"idle"
-char_body = NodePath("../..")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Walk" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Walk" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations")]
 script = ExtResource("5_sweqy")
 speed = 50.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"walk"
-char_body = NodePath("../..")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Air" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Air" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations")]
 script = ExtResource("6_2hs0m")
 speed = 20.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"air"
-char_body = NodePath("../..")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Jump" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Jump" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations")]
 script = ExtResource("7_1jxqw")
 animations = NodePath("../../AnimatedSprite2D")
-char_body = NodePath("../..")
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Attack1" type="Node" parent="CharacterBody2D/StateMachine" unique_id=663898982 node_paths=PackedStringArray("attack_area", "animations")]
+script = ExtResource("8_dw050")
+attack_area = NodePath("../../Attack1Area")
+animations = NodePath("../../AnimatedSprite2D")
+animation_name = &"attack1"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
