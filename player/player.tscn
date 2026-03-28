@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cfo1aic3ww64d" path="res://player/air.gd" id="6_2hs0m"]
 [ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://player/jump.gd" id="7_1jxqw"]
 [ext_resource type="Script" uid="uid://pxv0btx0m22c" path="res://player/attack_1.gd" id="8_dw050"]
+[ext_resource type="Script" uid="uid://bls1fa5u0dv1l" path="res://player/hurt.gd" id="9_hg6s5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw050"]
 radius = 8.995824
@@ -48,6 +49,22 @@ region = Rect2(400, 200, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
 atlas = ExtResource("1_4flbx")
 region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(300, 500, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -143,6 +160,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_onrkg")
 }, {
 "duration": 1.0,
@@ -194,64 +228,69 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" unique_id=943026036]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=889163836 node_paths=PackedStringArray("state_machine")]
+[node name="Player" type="CharacterBody2D" unique_id=889163836 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_rgyib")
 state_machine = NodePath("StateMachine")
 
-[node name="Attack1Area" type="Area2D" parent="CharacterBody2D" unique_id=766998856]
+[node name="Attack1Area" type="Area2D" parent="." unique_id=766998856]
+monitoring = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Attack1Area" unique_id=1085190739]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1Area" unique_id=1085190739]
 position = Vector2(4, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dw050")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1261421039]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261421039]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_sh265")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1741906832]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741906832]
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"attack1"
+frame_progress = 0.3499186
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=611533730]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=611533730]
 limit_enabled = false
 
-[node name="StateMachine" type="Node" parent="CharacterBody2D" unique_id=1370254779 node_paths=PackedStringArray("current_state", "character_body")]
+[node name="StateMachine" type="Node" parent="." unique_id=1370254779 node_paths=PackedStringArray("current_state", "character_body")]
 script = ExtResource("4_hqtel")
 current_state = NodePath("Idle")
 character_body = NodePath("..")
 
-[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine" unique_id=38853823 node_paths=PackedStringArray("animations")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=38853823 node_paths=PackedStringArray("animations")]
 script = ExtResource("3_i3pqv")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"idle"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Walk" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations")]
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations")]
 script = ExtResource("5_sweqy")
 speed = 50.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"walk"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Air" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations")]
+[node name="Air" type="Node" parent="StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations")]
 script = ExtResource("6_2hs0m")
 speed = 20.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"air"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Jump" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations")]
 script = ExtResource("7_1jxqw")
 jump_speed = -120.0
 animations = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Attack1" type="Node" parent="CharacterBody2D/StateMachine" unique_id=663898982 node_paths=PackedStringArray("attack_area", "animations")]
+[node name="Attack1" type="Node" parent="StateMachine" unique_id=663898982 node_paths=PackedStringArray("attack_area", "animations")]
 script = ExtResource("8_dw050")
 attack_area = NodePath("../../Attack1Area")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"attack1"
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=11802998]
+script = ExtResource("9_hg6s5")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"

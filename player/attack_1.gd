@@ -15,4 +15,5 @@ func on_exit() -> void:
 	attack_area.monitoring = false
 	
 func update(_delta: float) -> void:
-	print("attack1")
+	pass
+	#print("attack1")

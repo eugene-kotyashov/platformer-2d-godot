@@ -22,3 +22,10 @@ func _physics_process(_delta: float) -> void:
 		state_machine.transition("walk_state")
 	else:
 		state_machine.transition("air_state")
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	print(area.name + " entered")
+	if area.get_parent() is CharacterController:
+		print("enemy is hit")
+		state_machine.transition("hurt_state")

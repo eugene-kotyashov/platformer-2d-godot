@@ -5,10 +5,44 @@
 [ext_resource type="Script" uid="uid://pxa5p6cbjam6" path="res://state_machine.gd" id="3_qi2p4"]
 [ext_resource type="Script" uid="uid://5aftny2e5ani" path="res://enemy/walk.gd" id="4_pmsee"]
 [ext_resource type="Script" uid="uid://dmwjfeu4uriu2" path="res://enemy/air.gd" id="5_1wwld"]
+[ext_resource type="Script" uid="uid://celqeadfivf4o" path="res://enemy/hurt.gd" id="6_1wwld"]
+[ext_resource type="Script" uid="uid://bw072uc2vjp1u" path="res://state.gd" id="7_y5vj3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
 radius = 9.0
 height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5vj3"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ffra"]
+atlas = ExtResource("1_7k104")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e355f"]
+atlas = ExtResource("1_7k104")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78jik"]
+atlas = ExtResource("1_7k104")
+region = Rect2(300, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3pv7"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoplw"]
+atlas = ExtResource("1_7k104")
+region = Rect2(100, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yflr"]
+atlas = ExtResource("1_7k104")
+region = Rect2(200, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf88j"]
+atlas = ExtResource("1_7k104")
+region = Rect2(300, 400, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
 atlas = ExtResource("1_7k104")
@@ -70,6 +104,40 @@ region = Rect2(700, 100, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_y5vj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ffra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e355f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78jik")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3pv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoplw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yflr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf88j")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qi2p4")
 }, {
 "duration": 1.0,
@@ -121,6 +189,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmsee"]
+radius = 7.071068
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1241616080 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_4gyqm")
 state_machine = NodePath("StateMachine")
@@ -130,9 +201,8 @@ shape = SubResource("CapsuleShape2D_4gyqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499521283]
 sprite_frames = SubResource("SpriteFrames_jmwgi")
-animation = &"walk"
-frame = 6
-frame_progress = 0.008586777
+animation = &"hurt"
+frame_progress = 0.026939765
 
 [node name="RightCast" type="RayCast2D" parent="." unique_id=1301690860]
 position = Vector2(8, 1)
@@ -159,3 +229,26 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 script = ExtResource("5_1wwld")
 animations = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=916722884 node_paths=PackedStringArray("animations")]
+script = ExtResource("6_1wwld")
+animations = NodePath("../../AnimatedSprite2D")
+animation_name = &"hurt"
+duration_sec = 2.0
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=979627196 node_paths=PackedStringArray("animations")]
+script = ExtResource("7_y5vj3")
+animations = NodePath("../../AnimatedSprite2D")
+animation_name = &"death"
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Timer" type="Timer" parent="StateMachine" unique_id=21656487]
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=709094243]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1936225456]
+shape = SubResource("CircleShape2D_pmsee")
+debug_color = Color(0.9619332, 0.14684325, 0.3389875, 0.41960785)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
