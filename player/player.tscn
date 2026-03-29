@@ -289,6 +289,7 @@ script = ExtResource("8_dw050")
 attack_area = NodePath("../../Attack1Area")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"attack1"
+duration_sec = 1.0
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=11802998]

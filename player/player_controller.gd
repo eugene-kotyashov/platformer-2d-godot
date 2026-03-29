@@ -2,13 +2,16 @@ extends CharacterController
 
 @export var state_machine : StateMachine
 @onready var attack1_area : Area2D = $Attack1Area
+@onready var attack1_damage : float = 50
 @export var max_health : float = 100
 var health: float
 
 #@onready var state_machine : StateMachine = $StateMachine
 var gravity: Vector2 = Vector2(0, 100)
 
-
+func get_attack_damage():
+	return attack1_damage
+	
 func process_input():
 	move_direction=Input.get_axis("ui_left", "ui_right")
 	if Input.is_action_pressed("attack"):

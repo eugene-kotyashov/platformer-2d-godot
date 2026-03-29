@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://5aftny2e5ani" path="res://enemy/walk.gd" id="4_pmsee"]
 [ext_resource type="Script" uid="uid://dmwjfeu4uriu2" path="res://enemy/air.gd" id="5_1wwld"]
 [ext_resource type="Script" uid="uid://celqeadfivf4o" path="res://enemy/hurt.gd" id="6_1wwld"]
-[ext_resource type="Script" uid="uid://bw072uc2vjp1u" path="res://state.gd" id="7_y5vj3"]
+[ext_resource type="Script" uid="uid://duu5u5uinakji" path="res://enemy/death.gd" id="7_y5vj3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
 radius = 9.0
@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_78jik")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gf88j")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -202,7 +202,6 @@ shape = SubResource("CapsuleShape2D_4gyqm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499521283]
 sprite_frames = SubResource("SpriteFrames_jmwgi")
 animation = &"hurt"
-frame_progress = 0.026939765
 
 [node name="RightCast" type="RayCast2D" parent="." unique_id=1301690860]
 position = Vector2(8, 1)
@@ -241,6 +240,7 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 script = ExtResource("7_y5vj3")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"death"
+duration_sec = 1.0
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Timer" type="Timer" parent="StateMachine" unique_id=21656487]
