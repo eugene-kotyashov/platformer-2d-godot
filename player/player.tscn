@@ -228,6 +228,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
+height = 20.0
+
 [node name="Player" type="CharacterBody2D" unique_id=889163836 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_rgyib")
 state_machine = NodePath("StateMachine")
@@ -249,7 +252,8 @@ shape = SubResource("CapsuleShape2D_sh265")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741906832]
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"attack1"
-frame_progress = 0.00515534
+frame = 5
+frame_progress = 0.68204504
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=611533730]
 limit_enabled = false
@@ -296,3 +300,12 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=11802998]
 script = ExtResource("9_hg6s5")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=399583370]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1808658917]
+shape = SubResource("CapsuleShape2D_hg6s5")
+debug_color = Color(0.9250688, 0.25580782, 0.2590299, 0.41960785)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurt_box_area_entered"]

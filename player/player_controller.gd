@@ -3,6 +3,7 @@ extends CharacterController
 @export var state_machine : StateMachine
 @onready var attack1_area : Area2D = $Attack1Area
 @onready var animations : AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurtbox : Area2D = $Hurtbox
 @onready var attack1_damage : float = 50
 @export var max_health : float = 100
 var health: float
@@ -41,7 +42,8 @@ func change_attack_dir():
 		attack1_area.position.x = -3
 	
 func process_input():
-	
+	if !is_alive:
+		return
 	var new_direction=update_move_dir_from_input()
 	
 	if move_direction != new_direction:
@@ -72,4 +74,17 @@ func process_input():
 
 func _physics_process(_delta: float) -> void:
 	process_input()
-	print(name + " vx ", velocity.x)
+	# print(name + " vx ", velocity.x)
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	print(area.name + " entered")
+	if area.get_parent() is CharacterController:
+		print(name + " is hit")
+		var hitter: CharacterController = area.get_parent()
+		var incoming_damage = hitter.get_attack_damage()
+		print(name, "received damage",incoming_damage)
+		health -= incoming_damage
+		if health > 0:
+			state_machine.transition("hurt_state")
+		else:
+			state_machine.transition("death_state")

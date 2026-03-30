@@ -6,6 +6,8 @@ extends CharacterController
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var left_cast : RayCast2D = $LeftCast
 @onready var right_cast : RayCast2D = $RightCast
+@onready var attack1_area : Area2D = $Attack1Area
+@onready var attack1_target_in_range = $AttackTargetInRange
 
 
 var target_player: CharacterController
@@ -19,16 +21,27 @@ func _ready() -> void:
 func get_attack_damage():
 	return attack_damage
 
+func change_attack_dir():
+	if move_direction > 0:
+		attack1_area.position.x = 8
+	if move_direction < 0:
+		attack1_area.position.x = -8
 
 func _physics_process(_delta: float) -> void:
 	if !is_alive:
 		return
 	if is_on_floor():
+		if attack1_target_in_range.is_colliding():
+			state_machine.transition("attack1_state")
+			return
 		if !right_cast.is_colliding() && left_cast.is_colliding():
 			move_direction = -1
+			change_attack_dir()
 		if right_cast.is_colliding() && !left_cast.is_colliding():
 			move_direction = 1
-		state_machine.transition("walk_state")
+			change_attack_dir()
+		#state_machine.transition("walk_state")
+		state_machine.transition("idle_state")
 	else:
 		state_machine.transition("air_state")
 
@@ -36,8 +49,8 @@ func _physics_process(_delta: float) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print(area.name + " entered")
 	if area.get_parent() is CharacterController:
-		print("enemy is hit")
 		var hitter: CharacterController = area.get_parent()
+		print(name, " is hit by ", hitter.name )
 		var incoming_damage = hitter.get_attack_damage()
 		print(name, "received damage",incoming_damage)
 		health -= incoming_damage

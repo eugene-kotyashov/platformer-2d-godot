@@ -11,7 +11,7 @@ offset_right = 504.0
 offset_bottom = 402.0
 color = Color(1, 0.27450982, 1, 1)
 
-[node name="Enemy" parent="Background" unique_id=1241616080 instance=ExtResource("2_f7g2b")]
+[node name="Enemy2" parent="." unique_id=1241616080 instance=ExtResource("2_f7g2b")]
 position = Vector2(380, 202)
 
 [node name="Enemy" parent="." unique_id=1481181956 instance=ExtResource("2_f7g2b")]
