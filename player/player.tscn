@@ -233,13 +233,14 @@ script = ExtResource("1_rgyib")
 state_machine = NodePath("StateMachine")
 
 [node name="Attack1Area" type="Area2D" parent="." unique_id=766998856]
+position = Vector2(3, 0)
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1Area" unique_id=1085190739]
-position = Vector2(4, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dw050")
+debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261421039]
 position = Vector2(0, -2)
@@ -248,7 +249,7 @@ shape = SubResource("CapsuleShape2D_sh265")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741906832]
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"attack1"
-frame_progress = 0.3499186
+frame_progress = 0.00515534
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=611533730]
 limit_enabled = false
@@ -266,14 +267,14 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations")]
 script = ExtResource("5_sweqy")
-speed = 50.0
+speed = 100.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"walk"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Air" type="Node" parent="StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations")]
 script = ExtResource("6_2hs0m")
-speed = 20.0
+speed = 40.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"air"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"

@@ -11,11 +11,14 @@ offset_right = 504.0
 offset_bottom = 402.0
 color = Color(1, 0.27450982, 1, 1)
 
-[node name="Enemy" parent="." unique_id=1241616080 instance=ExtResource("2_f7g2b")]
-position = Vector2(153, 193)
+[node name="Enemy" parent="Background" unique_id=1241616080 instance=ExtResource("2_f7g2b")]
+position = Vector2(380, 202)
+
+[node name="Enemy" parent="." unique_id=1481181956 instance=ExtResource("2_f7g2b")]
+position = Vector2(153, 213)
 
 [node name="Player" parent="." unique_id=943026036 instance=ExtResource("1_gojnm")]
-position = Vector2(161, 269)
+position = Vector2(161, 277)
 
 [node name="floor" parent="." unique_id=1079251184 instance=ExtResource("2_1c2mv")]
 position = Vector2(247, 303)
@@ -23,4 +26,8 @@ scale = Vector2(15.572197, 0.50651026)
 
 [node name="platform2" parent="." unique_id=1074912944 instance=ExtResource("2_1c2mv")]
 position = Vector2(154, 242.00002)
+scale = Vector2(4.391286, 0.56132376)
+
+[node name="platform3" parent="." unique_id=220707195 instance=ExtResource("2_1c2mv")]
+position = Vector2(403.00003, 234)
 scale = Vector2(4.391286, 0.56132376)
