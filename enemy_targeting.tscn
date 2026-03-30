@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ch1xvionqlaqm"]
+
+[ext_resource type="PackedScene" uid="uid://ddkiuueuc1vcq" path="res://platform.tscn" id="1_t388g"]
+[ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player/player.tscn" id="2_ymkyb"]
+[ext_resource type="PackedScene" uid="uid://desh00nq3piyw" path="res://enemy/enemy.tscn" id="3_ymkyb"]
+
+[node name="EnemyTargeting" type="Node2D" unique_id=1035270400]
+
+[node name="Node2D" parent="." unique_id=1079251184 instance=ExtResource("1_t388g")]
+position = Vector2(322, 908.99994)
+scale = Vector2(14.713678, 0.60887027)
+
+[node name="Player" parent="." unique_id=889163836 instance=ExtResource("2_ymkyb")]
+position = Vector2(180.00002, 873.99994)
+scale = Vector2(0.9551535, 1.035807)
+
+[node name="Enemy" parent="." unique_id=1241616080 instance=ExtResource("3_ymkyb")]
+position = Vector2(309.44016, 881.7665)
+attack_damage = 20.0

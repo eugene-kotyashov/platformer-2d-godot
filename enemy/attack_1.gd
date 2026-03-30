@@ -3,8 +3,8 @@ extends State
 @export var attack1_area : Area2D
 
 func set_atack_area_active(active : bool):
-	attack1_area.monitorable = active
-	attack1_area.monitoring = active
+	attack1_area.set_deferred( "monitorable", active)
+	attack1_area.set_deferred( "monitoring", active)
 	
 func _ready() -> void:
 	name = "attack1_state"

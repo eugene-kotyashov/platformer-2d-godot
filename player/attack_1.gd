@@ -5,14 +5,16 @@ extends State
 func _ready() -> void:
 	name = "attack1_state"
 
+func set_atack_area_active(active : bool):
+	attack_area.set_deferred( "monitorable", active)
+	attack_area.set_deferred( "monitoring", active)
+	
 func on_enter() -> void:
 	super.on_enter()
-	attack_area.monitorable = true
-	attack_area.monitoring = true
+	set_atack_area_active(true)
 
 func on_exit() -> void:
-	attack_area.monitorable = false
-	attack_area.monitoring = false
+	set_atack_area_active(false)
 	
 func update(_delta: float) -> void:
 	pass

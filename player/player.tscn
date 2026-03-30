@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://player/jump.gd" id="7_1jxqw"]
 [ext_resource type="Script" uid="uid://pxv0btx0m22c" path="res://player/attack_1.gd" id="8_dw050"]
 [ext_resource type="Script" uid="uid://bls1fa5u0dv1l" path="res://player/hurt.gd" id="9_hg6s5"]
+[ext_resource type="Script" uid="uid://bs60es3urno44" path="res://player/death.gd" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw050"]
 radius = 8.995824
@@ -49,6 +50,22 @@ region = Rect2(400, 200, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
 atlas = ExtResource("1_4flbx")
 region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(100, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(200, 600, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(300, 600, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
 atlas = ExtResource("1_4flbx")
@@ -154,8 +171,25 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7lmhl")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wodsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hag")
+}],
+"loop": false,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -171,7 +205,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ebec5")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -252,8 +286,6 @@ shape = SubResource("CapsuleShape2D_sh265")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741906832]
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"attack1"
-frame = 5
-frame_progress = 0.68204504
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=611533730]
 limit_enabled = false
@@ -278,14 +310,14 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Air" type="Node" parent="StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations")]
 script = ExtResource("6_2hs0m")
-speed = 40.0
+speed = 70.0
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"air"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations")]
 script = ExtResource("7_1jxqw")
-jump_speed = -120.0
+jump_speed = -150.0
 animations = NodePath("../../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
@@ -297,12 +329,23 @@ animation_name = &"attack1"
 duration_sec = 1.0
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Hurt" type="Node" parent="StateMachine" unique_id=11802998]
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=11802998 node_paths=PackedStringArray("animations")]
 script = ExtResource("9_hg6s5")
+animations = NodePath("../../AnimatedSprite2D")
+animation_name = &"hurt"
+duration_sec = 1.0
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=2119318599 node_paths=PackedStringArray("animations")]
+script = ExtResource("10_8t03j")
+animations = NodePath("../../AnimatedSprite2D")
+animation_name = &"death"
+duration_sec = 2.0
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=399583370]
-collision_layer = 3
+collision_layer = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1808658917]
 shape = SubResource("CapsuleShape2D_hg6s5")

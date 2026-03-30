@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 
 # Called when the node enters the scene tree for the first time.
-func transition(new_state_name: String):
+func transition(new_state_name: String, force: bool=false):
 	if new_state_name == current_state.name:
 		# self transition disabled
 		return
@@ -24,7 +24,8 @@ func transition(new_state_name: String):
 	if new_state == null:
 		return
 	if !current_state.can_transition:
-		return
+		if !force:
+			return
 	current_state.on_exit()
 	print(character_body.name + " exitting " + current_state.name )
 	current_state = new_state

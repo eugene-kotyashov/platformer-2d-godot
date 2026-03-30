@@ -18,6 +18,7 @@ func get_attack_damage():
 func _ready() -> void:
 	scale.x = 1
 	velocity = Vector2.ZERO
+	health = max_health
 
 func update_move_dir_from_input():
 	var dir_input = Input.get_axis("ui_left", "ui_right")
@@ -77,14 +78,17 @@ func _physics_process(_delta: float) -> void:
 	# print(name + " vx ", velocity.x)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	print(area.name + " entered")
-	if area.get_parent() is CharacterController:
-		print(name + " is hit")
+	var parent = area.get_parent()
+	print(name, "'s hurtbox area",
+	 " entered by ", parent.name,"'s ", area.name )
+	if parent is CharacterController:
 		var hitter: CharacterController = area.get_parent()
+		print(name, " is hit by ", hitter.name )
 		var incoming_damage = hitter.get_attack_damage()
-		print(name, "received damage",incoming_damage)
 		health -= incoming_damage
+		print(name, " received damage ",
+		incoming_damage, " health left ", health)
 		if health > 0:
-			state_machine.transition("hurt_state")
+			state_machine.transition("hurt_state", true)
 		else:
-			state_machine.transition("death_state")
+			state_machine.transition("death_state", true)
