@@ -8,6 +8,9 @@ extends CharacterController
 @onready var right_cast : RayCast2D = $RightCast
 @onready var attack1_area : Area2D = $Attack1Area
 @onready var attack1_target_in_range = $AttackTargetInRange
+@onready var attack_area_dir_offset:float = 8
+@onready var attack1_target_range_offset:float = 20
+@onready var chase_x_dist_threshold: float = 20
 
 var target_player: CharacterController
 var gravity: Vector2 = Vector2(0, 100)
@@ -23,12 +26,12 @@ func get_attack_damage():
 func change_dir():
 	if move_direction > 0:
 		animations.flip_h = false
-		attack1_area.position.x = 8
-		attack1_target_in_range.target_position.x = 20
+		attack1_area.position.x = attack_area_dir_offset
+		attack1_target_in_range.target_position.x = attack1_target_range_offset
 	if move_direction < 0:
 		animations.flip_h = true
-		attack1_area.position.x = -8
-		attack1_target_in_range.target_position.x = -20
+		attack1_area.position.x = -attack_area_dir_offset
+		attack1_target_in_range.target_position.x = -attack1_target_range_offset
 
 
 func _physics_process(_delta: float) -> void:
@@ -52,9 +55,9 @@ func chase_target() -> void:
 	if !target_player:
 		return
 	var target_vec = target_player.position - position
-	if target_vec.x > 0:
+	if target_vec.x > chase_x_dist_threshold:
 		move_direction = 1
-	else:
+	if target_vec.x < -chase_x_dist_threshold:
 		move_direction = -1
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
