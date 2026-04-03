@@ -5,12 +5,10 @@ extends CharacterController
 @onready var animations : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox : Area2D = $Hurtbox
 @onready var attack1_damage : float = 20
-@export var max_health : float = 100
-var health: float
+
 
 #@onready var state_machine : StateMachine = $StateMachine
 var gravity: Vector2 = Vector2(0, 100)
-
 
 func get_attack_damage():
 	return attack1_damage
@@ -19,6 +17,7 @@ func _ready() -> void:
 	scale.x = 1
 	velocity = Vector2.ZERO
 	health = max_health
+	emit_signal("health_changed")
 
 func update_move_dir_from_input():
 	var dir_input = Input.get_axis("ui_left", "ui_right")
@@ -60,7 +59,7 @@ func process_input():
 		state_machine.transition("air_state")
 		return
 	if Input.is_action_just_pressed("ui_accept"):
-		print("ui_accept")
+		# print("ui_accept")
 		if is_on_floor():
 			state_machine.transition("jump_state")
 			return
@@ -86,6 +85,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		print(name, " is hit by ", hitter.name )
 		var incoming_damage = hitter.get_attack_damage()
 		health -= incoming_damage
+		emit_signal("health_changed")
 		print(name, " received damage ",
 		incoming_damage, " health left ", health)
 		if health > 0:
