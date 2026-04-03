@@ -258,7 +258,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmsee"]
-radius = 7.071068
+radius = 11.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5vj3"]
 radius = 14.0
@@ -266,6 +266,67 @@ height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e355f"]
 radius = 69.00725
+
+[sub_resource type="Animation" id="Animation_e355f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack1Area:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_78jik"]
+resource_name = "attack1_area_active"
+length = 1.2333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack1Area:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 0.46666667, 0.96666664, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack1Area:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667, 0.46666667, 0.96666664, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e355f"]
+_data = {
+&"RESET": SubResource("Animation_e355f"),
+&"attack1_area_active": SubResource("Animation_78jik")
+}
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1241616080 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_4gyqm")
@@ -281,9 +342,9 @@ shape = SubResource("CapsuleShape2D_4gyqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499521283]
 sprite_frames = SubResource("SpriteFrames_jmwgi")
-animation = &"air"
-frame = 1
-frame_progress = 0.33710203
+animation = &"attack1"
+frame = 5
+frame_progress = 1.0
 
 [node name="RightCast" type="RayCast2D" parent="." unique_id=1301690860]
 position = Vector2(10, 1)
@@ -328,12 +389,12 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Timer" type="Timer" parent="StateMachine" unique_id=21656487]
 
-[node name="Attack1" type="Node" parent="StateMachine" unique_id=217982960 node_paths=PackedStringArray("attack1_area", "animations")]
+[node name="Attack1" type="Node" parent="StateMachine" unique_id=217982960 node_paths=PackedStringArray("property_player", "animations")]
 script = ExtResource("8_5ffra")
-attack1_area = NodePath("../../Attack1Area")
+property_player = NodePath("../../AnimationPlayer")
 animations = NodePath("../../AnimatedSprite2D")
 animation_name = &"attack1"
-duration_sec = 2.0
+duration_sec = 1.5
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=265300661 node_paths=PackedStringArray("animations")]
@@ -365,6 +426,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetDetectionArea" unique_id=311772774]
 shape = SubResource("CircleShape2D_e355f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931964148]
+libraries/ = SubResource("AnimationLibrary_e355f")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="TargetDetectionArea" to="." method="_on_target_detection_area_area_entered"]
