@@ -4,7 +4,7 @@ extends CharacterController
 @onready var attack1_area : Area2D = $Attack1Area
 @onready var animations : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox : Area2D = $Hurtbox
-@onready var attack1_damage : float = 50
+@onready var attack1_damage : float = 20
 @export var max_health : float = 100
 var health: float
 
