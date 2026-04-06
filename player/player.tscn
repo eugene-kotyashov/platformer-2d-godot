@@ -327,6 +327,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=889163836 node_paths=PackedStringArray("state_machine")]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_rgyib")
 state_machine = NodePath("StateMachine")
 

@@ -36,7 +36,11 @@ func _physics_process(_delta: float) -> void:
 		return
 	if is_on_floor():
 		if attack1_target_in_range.is_colliding():
-			state_machine.transition("attack1_state")
+			var collider = attack1_target_in_range.get_collider()
+			if collider is StaticBody2D:
+				move_direction *= -1
+			else:
+				state_machine.transition("attack1_state")
 		if !right_cast.is_colliding() && left_cast.is_colliding():
 			move_direction = -1
 		if right_cast.is_colliding() && !left_cast.is_colliding():

@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://dlvuef2alnou7"]
 
 [ext_resource type="PackedScene" uid="uid://desh00nq3piyw" path="res://enemy/enemy.tscn" id="1_gyfs4"]
+[ext_resource type="Script" uid="uid://dm2lha8ylfqv1" path="res://game.gd" id="1_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player/player.tscn" id="2_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://u4ucqskeo23k" path="res://art/tileset.png" id="3_8mm7a"]
 [ext_resource type="Script" uid="uid://cacuhu6ctjsob" path="res://ui_status.gd" id="4_d5x1h"]
 [ext_resource type="Script" uid="uid://diu0xdcj5g6qx" path="res://ui_game_over.gd" id="5_8mm7a"]
+[ext_resource type="Texture2D" uid="uid://cwsi0gpctjdat" path="res://art/flag animation.png" id="7_nfk4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb12i"]
 texture = ExtResource("3_8mm7a")
@@ -264,7 +266,53 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4ptq8"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
+atlas = ExtResource("7_nfk4m")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
+atlas = ExtResource("7_nfk4m")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr18j"]
+atlas = ExtResource("7_nfk4m")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwutr"]
+atlas = ExtResource("7_nfk4m")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_671wp"]
+atlas = ExtResource("7_nfk4m")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mo76n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66tet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ycvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr18j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwutr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_671wp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="root" type="Node2D" unique_id=692275446]
+script = ExtResource("1_hq1ik")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1051212306]
 offset_right = 504.0
@@ -282,11 +330,12 @@ position = Vector2(161, 277)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1385180088]
 position = Vector2(-25, 8)
-tile_map_data = PackedByteArray("AAAPABIAAAAFAAEAAAAOABIAAAADAAEAAAANABIAAAADAAEAAAAMABIAAAADAAEAAAALABIAAAADAAEAAAAKABIAAAADAAEAAAAJABIAAAADAAEAAAAIABIAAAADAAEAAAAHABIAAAADAAEAAAAGABIAAAADAAEAAAAFABIAAAADAAEAAAAdAA0AAAADAAEAAAAcAA0AAAADAAEAAAAbAA0AAAADAAEAAAAaAA0AAAADAAEAAAAZAA0AAAADAAEAAAAYAA0AAAADAAEAAAAXAA0AAAADAAEAAAAWAA0AAAADAAEAAAAVAA0AAAADAAEAAAAMAA4AAAAFAAEAAAALAA4AAAADAAEAAAAKAA4AAAABAAEAAAAJAA4AAAADAAEAAAAIAA4AAAADAAEAAAAHAA4AAAADAAEAAAAGAA4AAAADAAEAAAAFAA4AAAADAAEAAAAEAA4AAAADAAEAAAAfABIAAAADAAEAAAAeABIAAAADAAEAAAAdABIAAAADAAEAAAAcABIAAAADAAEAAAAbABIAAAADAAEAAAAaABIAAAADAAEAAAAZABIAAAADAAEAAAAYABIAAAADAAEAAAAXABIAAAADAAEAAAAWABIAAAADAAEAAAAVABIAAAADAAEAAAAUABIAAAADAAEAAAATABIAAAADAAEAAAASABIAAAADAAEAAAARABIAAAADAAEAAAAQABIAAAADAAEAAAAUAA8AAAADAAUAAAAVAA8AAAAEAAsAAAAWAA4AAAAEAAsAAAAUAA4AAAADAAMAAAAVAA4AAAAEAAoAAAATAA8AAAADAAUAAAATAA4AAAADAAMAAAASAA8AAAACAAsAAAASAA4AAAADAAMAAAARAA4AAAABAAMAAAARAA0AAAADAAEAAAASAA0AAAADAAEAAAATAA0AAAADAAEAAAAUAA0AAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAPABIAAAAFAAEAAAAOABIAAAADAAEAAAANABIAAAADAAEAAAAMABIAAAADAAEAAAALABIAAAADAAEAAAAKABIAAAADAAEAAAAJABIAAAADAAEAAAAIABIAAAADAAEAAAAHABIAAAADAAEAAAAGABIAAAADAAEAAAAFABIAAAADAAEAAAAdAA0AAAAFAAEAAAAcAA0AAAADAAEAAAAbAA0AAAADAAEAAAAaAA0AAAADAAEAAAAZAA0AAAADAAEAAAAYAA0AAAADAAEAAAAXAA0AAAADAAEAAAAWAA0AAAADAAEAAAAVAA0AAAADAAEAAAAMAA4AAAAFAAEAAAALAA4AAAADAAEAAAAKAA4AAAABAAEAAAAJAA4AAAADAAEAAAAIAA4AAAADAAEAAAAHAA4AAAADAAEAAAAGAA4AAAADAAEAAAAFAA4AAAADAAEAAAAEAA4AAAADAAEAAAAfABIAAAADAAEAAAAeABIAAAADAAEAAAAdABIAAAADAAEAAAAcABIAAAADAAEAAAAbABIAAAADAAEAAAAaABIAAAADAAEAAAAZABIAAAADAAEAAAAYABIAAAADAAEAAAAXABIAAAADAAEAAAAWABIAAAADAAEAAAAVABIAAAADAAEAAAAUABIAAAADAAEAAAATABIAAAADAAEAAAASABIAAAADAAEAAAARABIAAAADAAEAAAAQABIAAAADAAEAAAAUAA8AAAADAAUAAAAVAA8AAAAEAAsAAAAWAA4AAAAEAAsAAAAUAA4AAAADAAMAAAAVAA4AAAAEAAoAAAATAA8AAAADAAUAAAATAA4AAAADAAMAAAASAA8AAAACAAsAAAASAA4AAAADAAMAAAARAA4AAAABAAMAAAARAA0AAAADAAEAAAASAA0AAAADAAEAAAATAA0AAAADAAEAAAAUAA0AAAADAAEAAAAMAAkAAAAFAAEAAAANAAkAAAAFAAEAAAAOAAkAAAAFAAEAAAAPAAkAAAADAAEAAAAeAA0AAAAFAAEAAAAfAA0AAAAFAAEAAAA=")
 tile_set = SubResource("TileSet_gbhdq")
 
 [node name="WorldBoundary" type="StaticBody2D" parent="." unique_id=834784855]
 position = Vector2(253, 222)
+collision_layer = 5
 
 [node name="LeftWall" type="CollisionShape2D" parent="WorldBoundary" unique_id=798446653]
 position = Vector2(-184, 2)
@@ -346,6 +395,7 @@ grow_vertical = 0
 layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="StatusScreen/MarginContainer/VBoxContainer" unique_id=1258469745]
+self_modulate = Color(0.9843137, 0.4117647, 0.53333336, 1)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusScreen/MarginContainer/VBoxContainer" unique_id=1391200249]
@@ -353,14 +403,30 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="StatusScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=972359811]
 layout_mode = 2
-text = "Enemies killed:"
+text = "Kills:"
 
 [node name="KillCounText" type="Label" parent="StatusScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1111629285]
 layout_mode = 2
 text = "0"
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=1420736291]
+position = Vector2(220, 123)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=666555371]
+position = Vector2(-22, 19)
+shape = SubResource("RectangleShape2D_8mm7a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LevelExit" unique_id=177376662]
+sprite_frames = SubResource("SpriteFrames_mo76n")
+autoplay = "default"
+frame = 3
+frame_progress = 0.36862516
 
 [connection signal="death" from="Enemy2" to="StatusScreen" method="_on_enemy_death"]
 [connection signal="death" from="Enemy" to="StatusScreen" method="_on_enemy_death"]
 [connection signal="health_changed" from="Player" to="GameOverScreen" method="_on_player_health_changed"]
 [connection signal="health_changed" from="Player" to="StatusScreen" method="_on_player_health_changed"]
 [connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]
+[connection signal="area_entered" from="LevelExit" to="." method="_on_level_exit_area_entered"]
