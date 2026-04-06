@@ -301,10 +301,31 @@ player = NodePath("../Player")
 health_bar = NodePath("MarginContainer/ProgressBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1257421500]
-offset_left = 14.0
-offset_top = 10.0
-offset_right = 54.0
-offset_bottom = 50.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer" unique_id=1562999953]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/CenterContainer" unique_id=2118227212]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1861343832]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer" unique_id=79496955]
+layout_mode = 2
+text = "Restart"
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer" unique_id=1258469745]
 layout_mode = 2

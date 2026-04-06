@@ -11,4 +11,4 @@ func on_enter() -> void:
 	property_player.play("attack1_area_active")
 	
 func on_exit() -> void:
-	property_player.stop()
+	property_player.play("RESET")
