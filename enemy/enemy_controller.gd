@@ -66,8 +66,10 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		print(name, " is hit by ", hitter.name )
 		var incoming_damage = hitter.get_attack_damage()
 		health -= incoming_damage
+		if health <= 0:
+			emit_signal("death")
 		print(name, " received damage ",
-		incoming_damage, " health left ", health)
+		incoming_damage, " health ", health)
 		if health > 0:
 			state_machine.transition("hurt_state", true)
 		else:

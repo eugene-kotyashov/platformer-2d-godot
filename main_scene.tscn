@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://desh00nq3piyw" path="res://enemy/enemy.tscn" id="1_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player/player.tscn" id="2_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://u4ucqskeo23k" path="res://art/tileset.png" id="3_8mm7a"]
-[ext_resource type="Script" uid="uid://cacuhu6ctjsob" path="res://ui.gd" id="4_d5x1h"]
+[ext_resource type="Script" uid="uid://cacuhu6ctjsob" path="res://ui_status.gd" id="4_d5x1h"]
+[ext_resource type="Script" uid="uid://diu0xdcj5g6qx" path="res://ui_game_over.gd" id="5_8mm7a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb12i"]
 texture = ExtResource("3_8mm7a")
@@ -295,12 +296,13 @@ shape = SubResource("WorldBoundaryShape2D_f7g2b")
 position = Vector2(220, 8)
 shape = SubResource("WorldBoundaryShape2D_4ptq8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1945028288 node_paths=PackedStringArray("player", "health_bar")]
-script = ExtResource("4_d5x1h")
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1945028288 node_paths=PackedStringArray("button", "player")]
+visible = false
+script = ExtResource("5_8mm7a")
+button = NodePath("MarginContainer/CenterContainer/VBoxContainer/Button")
 player = NodePath("../Player")
-health_bar = NodePath("MarginContainer/ProgressBar")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1257421500]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen" unique_id=1257421500]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -313,21 +315,52 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer" unique_id=1562999953]
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen/MarginContainer" unique_id=1562999953]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/CenterContainer" unique_id=2118227212]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/MarginContainer/CenterContainer" unique_id=2118227212]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1861343832]
+[node name="Label" type="Label" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer" unique_id=1861343832]
 layout_mode = 2
 text = "GAME OVER"
 
-[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer" unique_id=79496955]
+[node name="Button" type="Button" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer" unique_id=79496955]
 layout_mode = 2
 text = "Restart"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer" unique_id=1258469745]
+[node name="StatusScreen" type="CanvasLayer" parent="." unique_id=1967492462 node_paths=PackedStringArray("health_bar", "player")]
+script = ExtResource("4_d5x1h")
+health_bar = NodePath("MarginContainer/VBoxContainer/ProgressBar")
+player = NodePath("../Player")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatusScreen" unique_id=1361112861]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+offset_right = 130.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusScreen/MarginContainer" unique_id=861507117]
 layout_mode = 2
 
-[connection signal="health_changed" from="Player" to="CanvasLayer" method="_on_player_health_changed"]
+[node name="ProgressBar" type="ProgressBar" parent="StatusScreen/MarginContainer/VBoxContainer" unique_id=1258469745]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusScreen/MarginContainer/VBoxContainer" unique_id=1391200249]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="StatusScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=972359811]
+layout_mode = 2
+text = "Enemies killed:"
+
+[node name="KillCounText" type="Label" parent="StatusScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1111629285]
+layout_mode = 2
+text = "0"
+
+[connection signal="death" from="Enemy2" to="StatusScreen" method="_on_enemy_death"]
+[connection signal="death" from="Enemy" to="StatusScreen" method="_on_enemy_death"]
+[connection signal="health_changed" from="Player" to="GameOverScreen" method="_on_player_health_changed"]
+[connection signal="health_changed" from="Player" to="StatusScreen" method="_on_player_health_changed"]
+[connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]

@@ -7,6 +7,7 @@ var is_alive: bool = true
 var health: float
 
 signal health_changed
+signal death
 
 func get_attack_damage():
 	pass
