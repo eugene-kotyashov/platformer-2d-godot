@@ -6,8 +6,5 @@ var is_alive: bool = true
 @export var max_health : float = 100
 var health: float
 
-signal health_changed
-signal death
-
 func get_attack_damage():
 	pass

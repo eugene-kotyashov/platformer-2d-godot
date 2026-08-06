@@ -11,4 +11,3 @@ func update(_delta: float) -> void:
 	var dir = char_body.move_direction
 	char_body.velocity.x = dir*speed
 	char_body.move_and_slide()
-	

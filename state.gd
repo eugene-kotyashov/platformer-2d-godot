@@ -6,7 +6,7 @@ class_name State
 @export var animation_name: StringName = &""
 @export var duration_sec: float = 0
 var duration_left: float = 0
-var char_body: CharacterController
+@export var char_body: PhysicsComponent
 var can_transition : bool = false
 
 func update_duration(delta: float) -> void:
@@ -22,9 +22,15 @@ func update(_delta: float) -> void:
 	pass
 
 func on_enter() -> void:
-	animations.play(animation_name)
 	duration_left = duration_sec
 	can_transition = false
+	if animation_name == null:
+		return
+	if animation_name.is_empty():
+		return
+	if animations == null: return
+	animations.play(animation_name)
+	
 	
 	
 func on_exit() -> void:

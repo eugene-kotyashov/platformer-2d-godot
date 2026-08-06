@@ -2,36 +2,38 @@ extends Node
 class_name StateMachine
 
 @export var current_state: State
-@export var character_body : CharacterBody2D
-var states : Dictionary = {}
+@export var character_body : PhysicsComponent
+@export var idle : State
+@export var walk : State
+@export var air : State
+@export var jump : State
+@export var hurt : State
+@export var death : State
+@export var attack1 : State
 
 func _ready() -> void:
-	for child in get_children():
-		if child is State:
-			states[child.name] = child
-			child.char_body = character_body
-	print(character_body.name + " loaded states")
-	for state_name in states.keys():
-		print("\t" + state_name)
+	if character_body == null:
+		print("no character body " + get_parent().name)
+		return
 	
 
 # Called when the node enters the scene tree for the first time.
-func transition(new_state_name: String, force_transition: bool=false):
-	if new_state_name == current_state.name:
+func transition(new_state: State, force_transition: bool=false):
+	if new_state == current_state:
 		# self transition disabled
 		return
-	var new_state = states.get(new_state_name)
 	if new_state == null:
 		return
+	var parent = get_parent()
 	if !current_state.can_transition:
 		if !force_transition:
 			return
 		else:
-			print(character_body.name + " force transitioning to " + new_state.name)
+			print(parent.name + " force transitioning to " + new_state.name)
 	current_state.on_exit()
-	print(character_body.name + " exitting " + current_state.name )
+	print(parent.name + " exitting " + current_state.name )
 	current_state = new_state
-	print(character_body.name + " entering " + current_state.name)
+	print(parent.name + " entering " + current_state.name)
 	current_state.on_enter()
 		
 			

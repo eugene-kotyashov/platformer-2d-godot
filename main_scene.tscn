@@ -306,7 +306,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_671wp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -318,15 +318,16 @@ script = ExtResource("1_hq1ik")
 offset_right = 504.0
 offset_bottom = 402.0
 color = Color(0.6230747, 0.85551697, 0.99462, 1)
+metadata/_edit_lock_ = true
 
 [node name="Enemy2" parent="." unique_id=1241616080 instance=ExtResource("1_gyfs4")]
-position = Vector2(379, 192)
+position = Vector2(85, 204)
 
 [node name="Enemy" parent="." unique_id=1481181956 instance=ExtResource("1_gyfs4")]
-position = Vector2(153, 213)
+position = Vector2(294, 192)
 
 [node name="Player" parent="." unique_id=943026036 instance=ExtResource("2_d5x1h")]
-position = Vector2(161, 277)
+position = Vector2(172, 275)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1385180088]
 position = Vector2(-25, 8)
@@ -424,9 +425,5 @@ autoplay = "default"
 frame = 3
 frame_progress = 0.36862516
 
-[connection signal="death" from="Enemy2" to="StatusScreen" method="_on_enemy_death"]
-[connection signal="death" from="Enemy" to="StatusScreen" method="_on_enemy_death"]
-[connection signal="health_changed" from="Player" to="GameOverScreen" method="_on_player_health_changed"]
-[connection signal="health_changed" from="Player" to="StatusScreen" method="_on_player_health_changed"]
 [connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]
 [connection signal="area_entered" from="LevelExit" to="." method="_on_level_exit_area_entered"]
