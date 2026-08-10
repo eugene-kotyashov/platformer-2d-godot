@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://dlvuef2alnou7"]
 
-[ext_resource type="PackedScene" uid="uid://desh00nq3piyw" path="res://enemy/enemy.tscn" id="1_gyfs4"]
 [ext_resource type="Script" uid="uid://dm2lha8ylfqv1" path="res://game.gd" id="1_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://ddpkv74m0hoto" path="res://player/player.tscn" id="2_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://u4ucqskeo23k" path="res://art/tileset.png" id="3_8mm7a"]
@@ -319,12 +318,6 @@ offset_right = 504.0
 offset_bottom = 402.0
 color = Color(0.6230747, 0.85551697, 0.99462, 1)
 metadata/_edit_lock_ = true
-
-[node name="Enemy2" parent="." unique_id=1241616080 instance=ExtResource("1_gyfs4")]
-position = Vector2(85, 204)
-
-[node name="Enemy" parent="." unique_id=1481181956 instance=ExtResource("1_gyfs4")]
-position = Vector2(294, 192)
 
 [node name="Player" parent="." unique_id=943026036 instance=ExtResource("2_d5x1h")]
 position = Vector2(172, 275)

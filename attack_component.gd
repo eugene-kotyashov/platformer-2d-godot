@@ -2,8 +2,8 @@ extends Node2D
 class_name AttackComponent
 
 @export var damage: float = 100
-@onready var state : State = $Attack1
-@onready var player: AnimationPlayer = $AnimationPlayer
+@export var state : State
+@export var player: AnimationComponent 
 @onready var area: Area2D = $AttackArea
 
 func play_active():

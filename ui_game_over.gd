@@ -5,7 +5,7 @@ extends CanvasLayer
 @export var player: CharacterController
 
 func _on_player_health_changed():
-	visible = player.health <= 0
+	visible = player.is_alive == false
 
 
 func _on_restart_button_pressed() -> void:

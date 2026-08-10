@@ -8,9 +8,9 @@ var enemy_kill_count = 0
 func _ready() -> void:
 	enemy_kill_count = 0
 	
-func _on_player_health_changed():
-	visible = player.health > 0
-	health_bar.value = 100*player.health/player.max_health
+func _on_player_health_changed(current_health: float, max_health: float):
+	visible = player.health.is_alive
+	health_bar.value = 100*current_health/max_health
 
 func _on_enemy_death() -> void:
 	enemy_kill_count += 1

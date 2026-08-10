@@ -2,7 +2,6 @@ extends Node
 class_name StateMachine
 
 @export var current_state: State
-@export var character_body : PhysicsComponent
 @export var idle : State
 @export var walk : State
 @export var air : State
@@ -10,11 +9,6 @@ class_name StateMachine
 @export var hurt : State
 @export var death : State
 @export var attack1 : State
-
-func _ready() -> void:
-	if character_body == null:
-		print("no character body " + get_parent().name)
-		return
 	
 
 # Called when the node enters the scene tree for the first time.

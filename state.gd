@@ -2,7 +2,7 @@ extends Node
 class_name State
 
 #@onready var character_body: CharacterController = $CharacteBody2D
-@export var animations : AnimatedSprite2D
+@export var animations : AnimationComponent
 @export var animation_name: StringName = &""
 @export var duration_sec: float = 0
 var duration_left: float = 0
@@ -32,7 +32,6 @@ func on_enter() -> void:
 	animations.play(animation_name)
 	
 	
-	
 func on_exit() -> void:
-	pass
+	animations.play("RESET")
 	

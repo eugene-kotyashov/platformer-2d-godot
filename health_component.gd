@@ -1,15 +1,15 @@
 extends Node
 class_name HealthComponent
 
-signal health_changed
+signal health_changed(current_health: float, max_health: float)
 signal death
 
-var _current : float
+var _current : float = 100
 @export var current : float = 100:
 	set(value):
 		if _current != value:
-			emit_signal("health_changed")
-		_current = clampf(value, 0, max_health)
+			_current = clampf(value, 0, max_health)
+			emit_signal("health_changed", _current, max_health)
 		if _current == 0:
 			emit_signal("death")
 	get:
