@@ -1,196 +1,13 @@
 [gd_scene format=3 uid="uid://ddpkv74m0hoto"]
 
-[ext_resource type="Texture2D" uid="uid://dfp1rwmu1d301" path="res://art/Soldier.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://365dajku2lyx" path="res://player/idle.gd" id="3_i3pqv"]
-[ext_resource type="Script" uid="uid://pxa5p6cbjam6" path="res://state_machine.gd" id="4_hqtel"]
-[ext_resource type="Script" uid="uid://cwq6b5cfh7y0h" path="res://player/walk.gd" id="5_sweqy"]
-[ext_resource type="Script" uid="uid://cfo1aic3ww64d" path="res://player/air.gd" id="6_2hs0m"]
-[ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://player/jump.gd" id="7_1jxqw"]
-[ext_resource type="Script" uid="uid://bls1fa5u0dv1l" path="res://player/hurt.gd" id="9_hg6s5"]
-[ext_resource type="Script" uid="uid://bs60es3urno44" path="res://player/death.gd" id="10_8t03j"]
-[ext_resource type="Script" uid="uid://bkjioblpd0a5h" path="res://enemy/physics_component.gd" id="11_ebec5"]
+[ext_resource type="PackedScene" uid="uid://bx37gia5wfx65" path="res://player/animation_component.tscn" id="1_boad6"]
+[ext_resource type="PackedScene" uid="uid://ckgn8mborpg0q" path="res://state_machine_component.tscn" id="2_rgyib"]
+[ext_resource type="PackedScene" uid="uid://dtd1b1qgdd3f7" path="res://physics_component.tscn" id="4_boad6"]
+[ext_resource type="PackedScene" uid="uid://bt12cemj06wny" path="res://health_component.tscn" id="4_hg6s5"]
+[ext_resource type="PackedScene" uid="uid://ccregpm3qjldq" path="res://visuals_component.tscn" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://xelstaswvsl8" path="res://attack_component.gd" id="12_kb6p2"]
-[ext_resource type="Script" uid="uid://dm6b5n68jgs2" path="res://health_component.gd" id="12_yllr7"]
 [ext_resource type="Script" uid="uid://pxv0btx0m22c" path="res://player/attack_1.gd" id="13_wodsf"]
-[ext_resource type="Script" uid="uid://gnttwfynuep" path="res://visuals_component.gd" id="14_32hag"]
-[ext_resource type="Script" uid="uid://bfmryyqxdg2no" path="res://input_component.gd" id="14_kb6p2"]
-[ext_resource type="Script" uid="uid://i80fc4mkevqy" path="res://animation_component.gd" id="14_wodsf"]
-
-[sub_resource type="Animation" id="Animation_8t03j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackArea:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackArea:monitorable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_c35mf"]
-resource_name = "air"
-length = 0.73333335
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2ieo8"]
-resource_name = "attack1"
-length = 1.1666666
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackArea:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.06666667, 0.46666667, 0.96666664, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackArea:monitorable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667, 0.46666667, 0.96666664, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0009999999, 0.2, 0.4, 0.6, 0.8333333, 1.0666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_e7oew"]
-resource_name = "death"
-length = 0.6666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6)]
-}
-
-[sub_resource type="Animation" id="Animation_tqiix"]
-resource_name = "hurt"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.13333334, 0.23333333, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5)]
-}
-
-[sub_resource type="Animation" id="Animation_wodsf"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.73333335, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_32hag"]
-resource_name = "walk"
-length = 0.96666664
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.001355201, 0.1, 0.23333333, 0.36666667, 0.5, 0.6333333, 0.76666665, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvxpb"]
-_data = {
-&"RESET": SubResource("Animation_8t03j"),
-&"air": SubResource("Animation_c35mf"),
-&"attack1": SubResource("Animation_2ieo8"),
-&"death": SubResource("Animation_e7oew"),
-&"hurt": SubResource("Animation_tqiix"),
-&"idle": SubResource("Animation_wodsf"),
-&"walk": SubResource("Animation_32hag")
-}
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
-height = 20.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
-radius = 9.0
-height = 18.0
+[ext_resource type="PackedScene" uid="uid://bp8ob3gtwvrg7" path="res://input_component.tscn" id="15_wodsf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v80ua"]
 radius = 14.0
@@ -198,137 +15,47 @@ height = 34.0
 
 [node name="Player" type="Node2D" unique_id=791094738]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1646987861]
-root_node = NodePath("../PhysicsComponent/Attack1")
-libraries/ = SubResource("AnimationLibrary_hvxpb")
+[node name="AnimationComponent" parent="." unique_id=570107155 instance=ExtResource("1_boad6")]
 
-[node name="PhysicsComponent" type="CharacterBody2D" parent="." unique_id=1801913540]
-script = ExtResource("11_ebec5")
-metadata/_custom_type_script = "uid://bkjioblpd0a5h"
+[node name="Health" parent="." unique_id=1326061030 instance=ExtResource("4_hg6s5")]
 
-[node name="StateMachine" type="Node" parent="PhysicsComponent" unique_id=1370254779 node_paths=PackedStringArray("current_state", "idle", "walk", "air", "jump", "hurt", "death", "attack1")]
-script = ExtResource("4_hqtel")
-current_state = NodePath("Idle")
-idle = NodePath("Idle")
-walk = NodePath("Walk")
-air = NodePath("Air")
-jump = NodePath("Jump")
-hurt = NodePath("Hurt")
-death = NodePath("Death")
-attack1 = NodePath("../Attack1/Attack1")
+[node name="StateMachine" parent="." unique_id=1052981872 node_paths=PackedStringArray("char_body", "animations", "attack1") instance=ExtResource("2_rgyib")]
+char_body = NodePath("../PhysicsComponent")
+animations = NodePath("../AnimationComponent")
+attack1 = NodePath("../PhysicsComponent/Attack1/Attack1")
 
-[node name="Idle" type="Node" parent="PhysicsComponent/StateMachine" unique_id=38853823 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("3_i3pqv")
-animations = NodePath("../../AnimationComponent")
-animation_name = &"idle"
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+[node name="PhysicsComponent" parent="." unique_id=126935863 node_paths=PackedStringArray("health", "state_machine") instance=ExtResource("4_boad6")]
+health = NodePath("../Health")
+state_machine = NodePath("../StateMachine")
 
-[node name="Walk" type="Node" parent="PhysicsComponent/StateMachine" unique_id=1195464259 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("5_sweqy")
-speed = 100.0
-animations = NodePath("../../AnimationComponent")
-animation_name = &"walk"
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
-
-[node name="Air" type="Node" parent="PhysicsComponent/StateMachine" unique_id=1461981245 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("6_2hs0m")
-speed = 70.0
-animations = NodePath("../../AnimationComponent")
-animation_name = &"air"
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
-
-[node name="Jump" type="Node" parent="PhysicsComponent/StateMachine" unique_id=1027392517 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("7_1jxqw")
-jump_speed = -150.0
-animations = NodePath("../../AnimationComponent")
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
-
-[node name="Hurt" type="Node" parent="PhysicsComponent/StateMachine" unique_id=11802998 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("9_hg6s5")
-animations = NodePath("../../AnimationComponent")
-animation_name = &"hurt"
-duration_sec = 1.0
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
-
-[node name="Death" type="Node" parent="PhysicsComponent/StateMachine" unique_id=2119318599 node_paths=PackedStringArray("animations", "char_body")]
-script = ExtResource("10_8t03j")
-animations = NodePath("../../AnimationComponent")
-animation_name = &"death"
-duration_sec = 2.0
-char_body = NodePath("../..")
-metadata/_custom_type_script = "uid://bw072uc2vjp1u"
-
-[node name="Health" type="Node" parent="PhysicsComponent" unique_id=1196663516]
-script = ExtResource("12_yllr7")
-metadata/_custom_type_script = "uid://dm6b5n68jgs2"
-
-[node name="Hurtbox" type="Area2D" parent="PhysicsComponent" unique_id=399583370]
-collision_layer = 4
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Hurtbox" unique_id=1808658917]
-shape = SubResource("CapsuleShape2D_hg6s5")
-debug_color = Color(0.9250688, 0.25580782, 0.2590299, 0.41960785)
-
-[node name="Camera2D" type="Camera2D" parent="PhysicsComponent" unique_id=611533730]
-limit_enabled = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent" unique_id=1261421039]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_sh265")
-
-[node name="Attack1" type="Node2D" parent="PhysicsComponent" unique_id=1736098469 node_paths=PackedStringArray("state", "player")]
+[node name="Attack1" type="Node2D" parent="PhysicsComponent" unique_id=1308931939 node_paths=PackedStringArray("state", "player")]
 script = ExtResource("12_kb6p2")
+damage = 10.0
 state = NodePath("Attack1")
-player = NodePath("../AnimationComponent")
+player = NodePath("../../AnimationComponent")
 
-[node name="AttackArea" type="Area2D" parent="PhysicsComponent/Attack1" unique_id=654930455]
+[node name="AttackArea" type="Area2D" parent="PhysicsComponent/Attack1" unique_id=2052053741]
 position = Vector2(8, 0)
-collision_layer = 8
+collision_layer = 16
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Attack1/AttackArea" unique_id=428861549]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Attack1/AttackArea" unique_id=244677519]
 shape = SubResource("CapsuleShape2D_v80ua")
 debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
 
-[node name="Attack1" type="Node" parent="PhysicsComponent/Attack1" unique_id=751784971 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Attack1" type="Node" parent="PhysicsComponent/Attack1" unique_id=1961741974 node_paths=PackedStringArray("animations")]
 script = ExtResource("13_wodsf")
-animations = NodePath("../../AnimationComponent")
+animations = NodePath("../../../AnimationComponent")
 animation_name = &"attack1"
 duration_sec = 1.4
-char_body = NodePath("../..")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="VisualsComponent" type="Node2D" parent="PhysicsComponent" unique_id=88607875 node_paths=PackedStringArray("sprites")]
-script = ExtResource("14_32hag")
-sprites = NodePath("Sprite2D")
-metadata/_custom_type_script = "uid://gnttwfynuep"
+[node name="VisualsComponent" parent="PhysicsComponent" unique_id=819470101 instance=ExtResource("6_2ieo8")]
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsComponent/VisualsComponent" unique_id=1655828616]
-texture = ExtResource("1_4flbx")
-hframes = 9
-vframes = 7
-frame = 18
-region_rect = Rect2(0, 287.601, 598.272, 108.483)
-
-[node name="AnimationComponent" type="Node" parent="PhysicsComponent" unique_id=1689974654 node_paths=PackedStringArray("player")]
-script = ExtResource("14_wodsf")
-player = NodePath("../../AnimationPlayer")
-metadata/_custom_type_script = "uid://i80fc4mkevqy"
-
-[node name="InputComponent" type="Node" parent="." unique_id=1239724461 node_paths=PackedStringArray("physics", "health", "state_machine", "attack1", "visuals")]
-script = ExtResource("14_kb6p2")
+[node name="InputComponent" parent="." unique_id=528544133 node_paths=PackedStringArray("physics", "health", "state_machine", "attack1", "visuals") instance=ExtResource("15_wodsf")]
 physics = NodePath("../PhysicsComponent")
-health = NodePath("../PhysicsComponent/Health")
-state_machine = NodePath("../PhysicsComponent/StateMachine")
+health = NodePath("../Health")
+state_machine = NodePath("../StateMachine")
 attack1 = NodePath("../PhysicsComponent/Attack1")
 visuals = NodePath("../PhysicsComponent/VisualsComponent")
-metadata/_custom_type_script = "uid://bfmryyqxdg2no"
-
-[connection signal="area_entered" from="PhysicsComponent/Hurtbox" to="PhysicsComponent" method="_on_hurt_box_area_entered"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dtd1b1qgdd3f7"]
+
+[ext_resource type="Script" uid="uid://bkjioblpd0a5h" path="res://physics_component.gd" id="1_rjmxw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hg6s5"]
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
+radius = 9.0
+height = 18.0
+
+[node name="PhysicsComponent" type="CharacterBody2D" unique_id=126935863]
+script = ExtResource("1_rjmxw")
+metadata/_custom_type_script = "uid://bkjioblpd0a5h"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1733342543]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1623137129]
+shape = SubResource("CapsuleShape2D_hg6s5")
+debug_color = Color(0.9250688, 0.25580782, 0.2590299, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546610302]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_sh265")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurt_box_area_entered"]

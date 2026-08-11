@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://qqkn6jbvtwg" path="res://enemy/attack_1.gd" id="8_5ffra"]
 [ext_resource type="Script" uid="uid://bofjg7k1psepn" path="res://enemy/idle.gd" id="9_e355f"]
 [ext_resource type="Script" uid="uid://dm6b5n68jgs2" path="res://health_component.gd" id="10_78jik"]
-[ext_resource type="Script" uid="uid://bkjioblpd0a5h" path="res://enemy/physics_component.gd" id="10_o3pv7"]
+[ext_resource type="Script" uid="uid://bkjioblpd0a5h" path="res://physics_component.gd" id="10_o3pv7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e355f"]
 radius = 69.00725
@@ -384,10 +384,9 @@ monitorable = false
 shape = SubResource("CapsuleShape2D_y5vj3")
 debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
 
-[node name="StateMachine" type="Node" parent="." unique_id=478951977 node_paths=PackedStringArray("current_state", "character_body", "idle", "walk", "air", "hurt", "death", "attack1")]
+[node name="StateMachine" type="Node" parent="." unique_id=478951977 node_paths=PackedStringArray("current_state", "idle", "walk", "air", "hurt", "death", "attack1")]
 script = ExtResource("3_qi2p4")
 current_state = NodePath("Idle")
-character_body = NodePath("../Physics")
 idle = NodePath("Idle")
 walk = NodePath("Walk")
 air = NodePath("Air")

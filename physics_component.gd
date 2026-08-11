@@ -4,8 +4,8 @@ class_name PhysicsComponent
 @export var move_direction : float = 1
 
 @export var gravity: Vector2 = Vector2(0, 100) 
-@onready var health : HealthComponent = $Health
-@onready var state_machine : StateMachine = $StateMachine
+@export var health : HealthComponent
+@export var state_machine : StateMachine
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
@@ -17,7 +17,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var incoming_damage = hit_attack.damage
 	health.current -= incoming_damage
 	print(name, " received damage ",
-	incoming_damage, " health ", health)
+	incoming_damage, " health ", health.current)
 	if health.is_alive:
 		state_machine.transition(state_machine.hurt, true)
 	else:

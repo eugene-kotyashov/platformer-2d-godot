@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://8ep35enwlwu8"]
+
+[ext_resource type="Script" uid="uid://xelstaswvsl8" path="res://attack_component.gd" id="1_bjdfu"]
+[ext_resource type="Script" uid="uid://pxv0btx0m22c" path="res://player/attack_1.gd" id="2_d03ah"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v80ua"]
+radius = 14.0
+height = 34.0
+
+[node name="Attack1" type="Node2D" unique_id=1308931939 node_paths=PackedStringArray("state", "player")]
+script = ExtResource("1_bjdfu")
+damage = 10.0
+state = NodePath("Attack1")
+player = NodePath("")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=2052053741]
+position = Vector2(8, 0)
+collision_layer = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=244677519]
+shape = SubResource("CapsuleShape2D_v80ua")
+debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
+
+[node name="Attack1" type="Node" parent="." unique_id=1961741974 node_paths=PackedStringArray("animations", "char_body")]
+script = ExtResource("2_d03ah")
+animations = NodePath("")
+animation_name = &"attack1"
+duration_sec = 1.4
+char_body = NodePath("")
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"

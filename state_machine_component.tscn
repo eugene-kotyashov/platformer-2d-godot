@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://ckgn8mborpg0q"]
+
+[ext_resource type="Script" uid="uid://pxa5p6cbjam6" path="res://state_machine.gd" id="1_5bicv"]
+[ext_resource type="Script" uid="uid://365dajku2lyx" path="res://player/idle.gd" id="2_t1glw"]
+[ext_resource type="Script" uid="uid://cwq6b5cfh7y0h" path="res://player/walk.gd" id="3_8xppc"]
+[ext_resource type="Script" uid="uid://cfo1aic3ww64d" path="res://player/air.gd" id="4_i4ysq"]
+[ext_resource type="Script" uid="uid://bqwfvaluk0osn" path="res://player/jump.gd" id="5_jwd0y"]
+[ext_resource type="Script" uid="uid://bls1fa5u0dv1l" path="res://player/hurt.gd" id="6_8ftwp"]
+[ext_resource type="Script" uid="uid://bs60es3urno44" path="res://player/death.gd" id="7_4swss"]
+
+[node name="StateMachine" type="Node" unique_id=1052981872 node_paths=PackedStringArray("current_state", "idle", "walk", "air", "jump", "hurt", "death")]
+script = ExtResource("1_5bicv")
+current_state = NodePath("Idle")
+idle = NodePath("Idle")
+walk = NodePath("Walk")
+air = NodePath("Air")
+jump = NodePath("Jump")
+hurt = NodePath("Hurt")
+death = NodePath("Death")
+
+[node name="Idle" type="Node" parent="." unique_id=2134773336]
+script = ExtResource("2_t1glw")
+animation_name = &"idle"
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Walk" type="Node" parent="." unique_id=838431843]
+script = ExtResource("3_8xppc")
+speed = 100.0
+animation_name = &"walk"
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Air" type="Node" parent="." unique_id=138366025]
+script = ExtResource("4_i4ysq")
+speed = 70.0
+animation_name = &"air"
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Jump" type="Node" parent="." unique_id=1061811029]
+script = ExtResource("5_jwd0y")
+jump_speed = -150.0
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Hurt" type="Node" parent="." unique_id=563436643]
+script = ExtResource("6_8ftwp")
+animation_name = &"hurt"
+duration_sec = 1.0
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
+[node name="Death" type="Node" parent="." unique_id=697728594]
+script = ExtResource("7_4swss")
+animation_name = &"death"
+duration_sec = 2.0
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"

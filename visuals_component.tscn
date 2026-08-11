@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ccregpm3qjldq"]
+
+[ext_resource type="Script" uid="uid://gnttwfynuep" path="res://visuals_component.gd" id="1_71uog"]
+[ext_resource type="Texture2D" uid="uid://dfp1rwmu1d301" path="res://art/Soldier.png" id="2_w55hk"]
+
+[node name="VisualsComponent" type="Node2D" unique_id=819470101 node_paths=PackedStringArray("sprites")]
+script = ExtResource("1_71uog")
+sprites = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://gnttwfynuep"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1740052386]
+texture = ExtResource("2_w55hk")
+hframes = 9
+vframes = 7
+frame = 18
+region_rect = Rect2(0, 287.601, 598.272, 108.483)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1094680108]
+limit_enabled = false

@@ -6,8 +6,8 @@ class_name State
 @export var animation_name: StringName = &""
 @export var duration_sec: float = 0
 var duration_left: float = 0
-@export var char_body: PhysicsComponent
 var can_transition : bool = false
+var char_body: PhysicsComponent
 
 func update_duration(delta: float) -> void:
 	duration_left -= delta

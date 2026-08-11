@@ -1,7 +1,7 @@
 extends Node2D
 class_name AttackComponent
 
-@export var damage: float = 100
+@export var damage: float
 @export var state : State
 @export var player: AnimationComponent 
 @onready var area: Area2D = $AttackArea

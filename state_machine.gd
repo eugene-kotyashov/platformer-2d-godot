@@ -1,6 +1,8 @@
 extends Node
 class_name StateMachine
 
+@export var char_body: PhysicsComponent
+@export var animations: AnimationComponent
 @export var current_state: State
 @export var idle : State
 @export var walk : State
@@ -9,7 +11,13 @@ class_name StateMachine
 @export var hurt : State
 @export var death : State
 @export var attack1 : State
-	
+
+
+func _ready() -> void:
+	for child in get_children():
+		if child is State:
+			child.char_body = char_body
+			child.animations = animations
 
 # Called when the node enters the scene tree for the first time.
 func transition(new_state: State, force_transition: bool=false):
