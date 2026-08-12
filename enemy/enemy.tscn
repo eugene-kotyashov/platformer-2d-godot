@@ -336,6 +336,7 @@ state_machine = NodePath("StateMachine")
 
 [node name="Physics" type="CharacterBody2D" parent="." unique_id=699024514]
 script = ExtResource("10_o3pv7")
+gravity = Vector2(0, 99)
 metadata/_custom_type_script = "uid://bkjioblpd0a5h"
 
 [node name="TargetDetectionArea" type="Area2D" parent="Physics" unique_id=949041514]
@@ -395,53 +396,47 @@ death = NodePath("Death")
 attack1 = NodePath("Attack1")
 metadata/_custom_type_script = "uid://pxa5p6cbjam6"
 
-[node name="Walk" type="Node" parent="StateMachine" unique_id=1112817797 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1112817797 node_paths=PackedStringArray("animations")]
 script = ExtResource("4_pmsee")
 speed = 30.0
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"walk"
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Air" type="Node" parent="StateMachine" unique_id=1443826940 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Air" type="Node" parent="StateMachine" unique_id=1443826940 node_paths=PackedStringArray("animations")]
 script = ExtResource("5_1wwld")
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"air"
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Hurt" type="Node" parent="StateMachine" unique_id=916722884 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=916722884 node_paths=PackedStringArray("animations")]
 script = ExtResource("6_1wwld")
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"hurt"
 duration_sec = 2.0
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=979627196 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Death" type="Node" parent="StateMachine" unique_id=979627196 node_paths=PackedStringArray("animations")]
 script = ExtResource("7_y5vj3")
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"death"
 duration_sec = 2.0
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Timer" type="Timer" parent="StateMachine" unique_id=21656487]
 
-[node name="Attack1" type="Node" parent="StateMachine" unique_id=217982960 node_paths=PackedStringArray("property_player", "animations", "char_body")]
+[node name="Attack1" type="Node" parent="StateMachine" unique_id=217982960 node_paths=PackedStringArray("property_player", "animations")]
 script = ExtResource("8_5ffra")
 property_player = NodePath("../../AnimationPlayer")
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"attack1"
 duration_sec = 1.5
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=265300661 node_paths=PackedStringArray("animations", "char_body")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=265300661 node_paths=PackedStringArray("animations")]
 script = ExtResource("9_e355f")
 animations = NodePath("../../Physics/AnimatedSprite2D")
 animation_name = &"idle"
-char_body = NodePath("../../Physics")
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=931964148]

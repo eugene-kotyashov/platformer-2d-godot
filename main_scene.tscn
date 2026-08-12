@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://u4ucqskeo23k" path="res://art/tileset.png" id="3_8mm7a"]
 [ext_resource type="Script" uid="uid://cacuhu6ctjsob" path="res://ui_status.gd" id="4_d5x1h"]
 [ext_resource type="Script" uid="uid://diu0xdcj5g6qx" path="res://ui_game_over.gd" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://dbqq6s5sy7bko" path="res://enemy/enemy_one.tscn" id="7_66tet"]
 [ext_resource type="Texture2D" uid="uid://cwsi0gpctjdat" path="res://art/flag animation.png" id="7_nfk4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb12i"]
@@ -417,6 +418,9 @@ sprite_frames = SubResource("SpriteFrames_mo76n")
 autoplay = "default"
 frame = 3
 frame_progress = 0.36862516
+
+[node name="EnemyOne" parent="." unique_id=1093912640 instance=ExtResource("7_66tet")]
+position = Vector2(130, 213)
 
 [connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]
 [connection signal="area_entered" from="LevelExit" to="." method="_on_level_exit_area_entered"]

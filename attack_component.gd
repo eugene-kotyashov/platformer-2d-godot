@@ -5,6 +5,10 @@ class_name AttackComponent
 @export var state : State
 @export var player: AnimationComponent 
 @onready var area: Area2D = $AttackArea
+@onready var attack_target_in_range = $AttackTargetInRange
+@onready var attack_area_dir_offset:float = 8
+@onready var attack_target_range_offset:float = 20
+
 
 func play_active():
 	player.play("attack_active")
@@ -15,5 +19,9 @@ func play_reset():
 func change_attack_dir(new_direction):
 	if new_direction > 0:
 		area.position.x = 3
+		if attack_target_in_range == null: return
+		attack_target_in_range.target_position.x = attack_target_range_offset
 	else:
 		area.position.x = -3
+		if attack_target_in_range == null: return
+		attack_target_in_range.target_position.x = -attack_target_range_offset
