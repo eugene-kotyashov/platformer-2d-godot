@@ -4,15 +4,17 @@ class_name AIComponent
 @export var attack1 : AttackComponent
 @export var health: HealthComponent
 @export var physics: PhysicsComponent
-@onready var right_cast: RayCast2D = $RightCast
-@onready var left_cast: RayCast2D = $LeftCast
+@export var visuals : VisualsComponent
+@onready var right_cast: RayCast2D = $DownRightCast
+@onready var left_cast: RayCast2D = $DownLeftCast
 @export var state_machine: StateMachine
-@onready var chase_x_dist_threshold: float = 20
+@export var chase_x_dist_threshold: float
 
 var target_player: PhysicsComponent = null
 
 func change_dir():
-	pass
+	attack1.change_attack_dir(physics.move_direction)
+	visuals.change_move_dir(physics.move_direction)
 
 
 func _physics_process(_delta: float) -> void:
@@ -33,13 +35,16 @@ func _physics_process(_delta: float) -> void:
 		state_machine.transition(state_machine.air)
 
 func chase_target() -> void:
-	if !target_player:
+	if target_player == null:
 		return
-	var target_vec = target_player.position - physics.position
-	if target_vec.x > chase_x_dist_threshold:
-		physics.move_direction = 1
-	if target_vec.x < -chase_x_dist_threshold:
-		physics.move_direction = -1
+	var target_vec = target_player.global_position - physics.global_position
+	print("enemy ", physics.move_direction, " target x ", target_vec.x)
+	if abs(target_vec.x) > chase_x_dist_threshold:
+		if target_vec.x*physics.move_direction < 0:
+			if target_vec.x > 0:
+				physics.move_direction = 1
+			else:
+				physics.move_direction = -1
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
@@ -61,16 +66,18 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func _on_target_detection_area_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	print(name, "'s target detection",
+	var parent = area.get_parent().get_parent()
+	print(get_parent().get_parent().name, "'s target detection",
 	 " entered by ", parent.name,"'s ", area.name )
 	if area.get_parent() is PhysicsComponent:
 		target_player = area.get_parent() as PhysicsComponent
+		print("targeting ", target_player.get_parent().name)
 
 
 func _on_target_detection_area_area_exited(area: Area2D) -> void:
-	var parent = area.get_parent()
-	print(name, "'s target detection",
+	var parent = area.get_parent().get_parent()
+	print(get_parent().get_parent().name, "'s target detection",
 	 " exited by ", parent.name,"'s ", area.name )
 	if area.get_parent() == target_player:
 		target_player = null
+		print("target cleared")

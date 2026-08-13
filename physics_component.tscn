@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bkjioblpd0a5h"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1733342543]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1623137129]
 shape = SubResource("CapsuleShape2D_hg6s5")

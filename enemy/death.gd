@@ -5,4 +5,3 @@ func _ready() -> void:
 	
 func on_enter() -> void:
 	super.on_enter()
-	char_body.is_alive = false

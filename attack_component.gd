@@ -5,7 +5,7 @@ class_name AttackComponent
 @export var state : State
 @export var player: AnimationComponent 
 @onready var area: Area2D = $AttackArea
-@onready var attack_target_in_range = $AttackTargetInRange
+@export var attack_target_in_range : RayCast2D
 @onready var attack_area_dir_offset:float = 8
 @onready var attack_target_range_offset:float = 20
 

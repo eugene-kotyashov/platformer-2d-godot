@@ -35,6 +35,16 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls and floors"
+2d_physics/layer_2="player bbox"
+2d_physics/layer_3="player hurt"
+2d_physics/layer_4="enemy bbox"
+2d_physics/layer_5="enemy hurt"
+2d_physics/layer_6="player attack "
+2d_physics/layer_7="enemy attack"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

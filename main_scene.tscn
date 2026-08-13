@@ -321,7 +321,7 @@ color = Color(0.6230747, 0.85551697, 0.99462, 1)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=943026036 instance=ExtResource("2_d5x1h")]
-position = Vector2(172, 275)
+position = Vector2(159, 277)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1385180088]
 position = Vector2(-25, 8)
@@ -330,7 +330,6 @@ tile_set = SubResource("TileSet_gbhdq")
 
 [node name="WorldBoundary" type="StaticBody2D" parent="." unique_id=834784855]
 position = Vector2(253, 222)
-collision_layer = 5
 
 [node name="LeftWall" type="CollisionShape2D" parent="WorldBoundary" unique_id=798446653]
 position = Vector2(-184, 2)
@@ -420,7 +419,7 @@ frame = 3
 frame_progress = 0.36862516
 
 [node name="EnemyOne" parent="." unique_id=1093912640 instance=ExtResource("7_66tet")]
-position = Vector2(130, 213)
+position = Vector2(281, 276)
 
 [connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]
 [connection signal="area_entered" from="LevelExit" to="." method="_on_level_exit_area_entered"]

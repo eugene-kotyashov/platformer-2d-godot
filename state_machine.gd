@@ -18,6 +18,7 @@ func _ready() -> void:
 		if child is State:
 			child.char_body = char_body
 			child.animations = animations
+	attack1.animations = animations
 
 # Called when the node enters the scene tree for the first time.
 func transition(new_state: State, force_transition: bool=false):
