@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 [node name="Hurt" type="Node" parent="." unique_id=563436643]
 script = ExtResource("6_8ftwp")
 animation_name = &"hurt"
-duration_sec = 1.0
+duration_sec = 0.4
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Death" type="Node" parent="." unique_id=697728594]

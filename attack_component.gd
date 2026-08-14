@@ -6,8 +6,8 @@ class_name AttackComponent
 @export var player: AnimationComponent 
 @onready var area: Area2D = $AttackArea
 @export var attack_target_in_range : RayCast2D
-@onready var attack_area_dir_offset:float = 8
-@onready var attack_target_range_offset:float = 20
+@export var attack_area_dir_offset:float = 8
+@export var attack_target_range_offset:float = 20
 
 
 func play_active():
@@ -18,10 +18,10 @@ func play_reset():
 	
 func change_attack_dir(new_direction):
 	if new_direction > 0:
-		area.position.x = 3
+		area.position.x = attack_area_dir_offset
 		if attack_target_in_range == null: return
 		attack_target_in_range.target_position.x = attack_target_range_offset
 	else:
-		area.position.x = -3
+		area.position.x = -attack_area_dir_offset
 		if attack_target_in_range == null: return
 		attack_target_in_range.target_position.x = -attack_target_range_offset

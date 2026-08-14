@@ -6,16 +6,13 @@ class_name State
 @export var animation_name: StringName = &""
 @export var duration_sec: float = 0
 var duration_left: float = 0
-var can_transition : bool = false
+var can_transition : bool :
+	get:
+		return duration_left <= 0
 var char_body: PhysicsComponent
 
 func update_duration(delta: float) -> void:
 	duration_left -= delta
-	if duration_left > 0:
-		can_transition = false
-	else:
-		can_transition = true
-		duration_left = 0
 	
 
 func update(_delta: float) -> void:
@@ -23,7 +20,6 @@ func update(_delta: float) -> void:
 
 func on_enter() -> void:
 	duration_left = duration_sec
-	can_transition = false
 	if animation_name == null:
 		return
 	if animation_name.is_empty():
@@ -34,4 +30,5 @@ func on_enter() -> void:
 	
 func on_exit() -> void:
 	animations.play("RESET")
+	print("reset played")
 	

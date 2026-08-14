@@ -4,6 +4,5 @@ extends Node2D
 
 
 func _on_level_exit_area_entered(area: Area2D) -> void:
-	if area.get_parent() is CharacterController:
-		get_tree().paused = false  # Unpause first
-		get_tree().reload_current_scene()  # Restarts main scene
+	get_tree().paused = false  # Unpause first
+	get_tree().reload_current_scene()  # Restarts main scene

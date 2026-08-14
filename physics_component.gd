@@ -8,8 +8,8 @@ class_name PhysicsComponent
 @export var state_machine : StateMachine
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	print(name, "'s hurtbox area",
+	var parent = area.get_parent().get_parent().get_parent()
+	print(get_parent().name, "'s hurtbox area",
 	 " entered by ", parent.name,"'s ", area.name )
 	var hit_attack = area.get_parent() as AttackComponent
 	if hit_attack == null: return

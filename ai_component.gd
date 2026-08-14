@@ -38,31 +38,13 @@ func chase_target() -> void:
 	if target_player == null:
 		return
 	var target_vec = target_player.global_position - physics.global_position
-	print("enemy ", physics.move_direction, " target x ", target_vec.x)
+	# print("enemy ", physics.move_direction, " target x ", target_vec.x)
 	if abs(target_vec.x) > chase_x_dist_threshold:
 		if target_vec.x*physics.move_direction < 0:
 			if target_vec.x > 0:
 				physics.move_direction = 1
 			else:
 				physics.move_direction = -1
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	print(name, "'s hurtbox area",
-	 " entered by ", parent.name,"'s ", area.name )
-	if parent is CharacterController:
-		var hitter: CharacterController = area.get_parent()
-		print(name, " is hit by ", hitter.name )
-		var incoming_damage = hitter.get_attack_damage()
-		health -= incoming_damage
-		if health.is_alive == false:
-			emit_signal("death")
-		print(name, " received damage ",
-		incoming_damage, " health ", health)
-		if health.is_alive:
-			state_machine.transition(state_machine.hurt, true)
-		else:
-			state_machine.transition(state_machine.death, true)
 
 
 func _on_target_detection_area_area_entered(area: Area2D) -> void:

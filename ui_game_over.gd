@@ -2,10 +2,10 @@ extends CanvasLayer
 
 
 @export var button: Button
-@export var player: CharacterController
+@export var player: PhysicsComponent
 
-func _on_player_health_changed():
-	visible = player.is_alive == false
+func _on_player_health_changed(current_health: float, max_health: float):
+	visible = current_health <= 0
 
 
 func _on_restart_button_pressed() -> void:

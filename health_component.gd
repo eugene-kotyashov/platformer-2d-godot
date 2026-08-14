@@ -16,6 +16,7 @@ var _current : float = 100
 		return _current
 
 @export var max_health : float = 100
+
 var is_alive : bool:
 	get:
 		return current > 0

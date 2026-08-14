@@ -1,12 +1,13 @@
 extends CanvasLayer
 
 @export var health_bar: ProgressBar
-@export var player: CharacterController
+@export var player: PhysicsComponent
 @onready var kill_count_text = $MarginContainer/VBoxContainer/HBoxContainer/KillCounText
 var enemy_kill_count = 0
 
 func _ready() -> void:
 	enemy_kill_count = 0
+	health_bar.value = 100
 	
 func _on_player_health_changed(current_health: float, max_health: float):
 	visible = player.health.is_alive
@@ -14,4 +15,4 @@ func _on_player_health_changed(current_health: float, max_health: float):
 
 func _on_enemy_death() -> void:
 	enemy_kill_count += 1
-	kill_count_text.text = str(enemy_kill_count)
+	kill_count_text.text = str(enemy_kill_count) # Replace with function body.
