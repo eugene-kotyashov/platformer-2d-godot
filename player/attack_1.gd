@@ -1,7 +1,7 @@
 extends State	
 
 func _ready() -> void:
-	name = "attack1_state"
+	name = "attack2_state"
 	
 func on_enter() -> void:
 	super.on_enter()

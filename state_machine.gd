@@ -11,6 +11,7 @@ class_name StateMachine
 @export var hurt : State
 @export var death : State
 @export var attack1 : State
+@export var attack2: State
 
 
 func _ready() -> void:

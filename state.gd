@@ -30,5 +30,5 @@ func on_enter() -> void:
 	
 func on_exit() -> void:
 	animations.play("RESET")
-	print("reset played")
+	#print("reset played")
 	

@@ -9,12 +9,6 @@ class_name AttackComponent
 @export var attack_area_dir_offset:float = 8
 @export var attack_target_range_offset:float = 20
 
-
-func play_active():
-	player.play("attack_active")
-	
-func play_reset():
-	player.play("RESET")
 	
 func change_attack_dir(new_direction):
 	if new_direction > 0:

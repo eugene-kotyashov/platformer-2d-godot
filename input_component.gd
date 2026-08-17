@@ -4,8 +4,9 @@ class_name InputComponent
 @export var physics : PhysicsComponent
 @export var health : HealthComponent
 @export var state_machine : StateMachine
-@export var attack1 : AttackComponent
 @export var visuals : VisualsComponent
+@export var attack1 : AttackComponent
+@export var attack2 : AttackComponent
 
 
 func update_move_dir_from_input():
@@ -26,10 +27,15 @@ func _physics_process(delta : float) -> void:
 		physics.move_direction = new_direction
 		visuals.change_move_dir(new_direction)
 		attack1.change_attack_dir(new_direction)
+		attack2.change_attack_dir(new_direction)
 	
 	if Input.is_action_pressed("attack"):
 		if physics.is_on_floor():
 			state_machine.transition(state_machine.attack1)
+			return
+	if Input.is_action_pressed("attack_two"):
+		if physics.is_on_floor():
+			state_machine.transition(state_machine.attack2)
 			return
 	if !physics.is_on_floor():
 		state_machine.transition(state_machine.air)

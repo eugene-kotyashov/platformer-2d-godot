@@ -326,7 +326,7 @@ position = Vector2(281, 276)
 [node name="Player" parent="." unique_id=594074368 instance=ExtResource("2_nfk4m")]
 position = Vector2(159, 277)
 
-[node name="RemoteTransform2D" parent="Player/PhysicsComponent" parent_id_path=PackedInt32Array(594074368, 1626681156) index="4" unique_id=1693175279]
+[node name="RemoteTransform2D" parent="Player/PhysicsComponent" parent_id_path=PackedInt32Array(594074368, 1626681156) index="5" unique_id=1693175279]
 remote_path = NodePath("../../../Camera2D")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1385180088]
@@ -445,6 +445,7 @@ position = Vector2(123.4277, 214.7362)
 
 [editable path="EnemyOne"]
 [editable path="Player"]
+[editable path="Player/PhysicsComponent/VisualsComponent"]
 [editable path="EnemyOne2"]
 [editable path="EnemyOne4"]
 [editable path="EnemyOne3"]

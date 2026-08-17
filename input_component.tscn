@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bfmryyqxdg2no" path="res://input_component.gd" id="1_fa86p"]
 
-[node name="InputComponent" type="Node" unique_id=528544133 node_paths=PackedStringArray("physics", "health", "state_machine", "attack1", "visuals")]
+[node name="InputComponent" type="Node" unique_id=528544133]
 script = ExtResource("1_fa86p")
-physics = NodePath("")
-health = NodePath("")
-state_machine = NodePath("")
-attack1 = NodePath("")
-visuals = NodePath("")
 metadata/_custom_type_script = "uid://bfmryyqxdg2no"

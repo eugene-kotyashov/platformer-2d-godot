@@ -36,6 +36,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack2/AttackArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c35mf"]
 resource_name = "air"
@@ -77,6 +89,34 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.36666667, 0.6666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_hg6s5"]
+resource_name = "attack2"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../VisualsComponent/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.33333334, 0.46666667, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Attack2/AttackArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, false, true]
@@ -152,6 +192,7 @@ _data = {
 &"RESET": SubResource("Animation_8t03j"),
 &"air": SubResource("Animation_c35mf"),
 &"attack1": SubResource("Animation_2ieo8"),
+&"attack2": SubResource("Animation_hg6s5"),
 &"death": SubResource("Animation_e7oew"),
 &"hurt": SubResource("Animation_tqiix"),
 &"idle": SubResource("Animation_wodsf"),
@@ -167,7 +208,6 @@ height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v80ua"]
 radius = 14.0
-height = 34.0
 
 [node name="Player" type="Node2D" unique_id=594074368 node_paths=PackedStringArray("health")]
 script = ExtResource("1_hg6s5")
@@ -186,10 +226,11 @@ libraries/ = SubResource("AnimationLibrary_hvxpb")
 script = ExtResource("2_hg6s5")
 metadata/_custom_type_script = "uid://dm6b5n68jgs2"
 
-[node name="StateMachine" parent="." unique_id=1052981872 node_paths=PackedStringArray("char_body", "animations", "attack1") instance=ExtResource("2_rgyib")]
+[node name="StateMachine" parent="." unique_id=1052981872 node_paths=PackedStringArray("char_body", "animations", "attack1", "attack2") instance=ExtResource("2_rgyib")]
 char_body = NodePath("../PhysicsComponent")
 animations = NodePath("../AnimationComponent")
 attack1 = NodePath("../PhysicsComponent/Attack1/Attack1")
+attack2 = NodePath("../PhysicsComponent/Attack2/Attack2")
 
 [node name="PhysicsComponent" type="CharacterBody2D" parent="." unique_id=1626681156 node_paths=PackedStringArray("health", "state_machine")]
 collision_layer = 2
@@ -234,15 +275,43 @@ animation_name = &"attack1"
 duration_sec = 0.8
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
+[node name="Attack2" type="Node2D" parent="PhysicsComponent" unique_id=171908675 node_paths=PackedStringArray("state", "player")]
+script = ExtResource("12_kb6p2")
+damage = 30.0
+state = NodePath("Attack2")
+player = NodePath("../../AnimationComponent")
+
+[node name="AttackArea" type="Area2D" parent="PhysicsComponent/Attack2" unique_id=838847902]
+position = Vector2(8, 0)
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Attack2/AttackArea" unique_id=2112303543]
+position = Vector2(1, -4)
+shape = SubResource("CapsuleShape2D_v80ua")
+disabled = true
+debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
+
+[node name="Attack2" type="Node" parent="PhysicsComponent/Attack2" unique_id=601204669 node_paths=PackedStringArray("animations")]
+script = ExtResource("13_wodsf")
+animations = NodePath("../../../AnimationComponent")
+animation_name = &"attack2"
+duration_sec = 0.7
+metadata/_custom_type_script = "uid://bw072uc2vjp1u"
+
 [node name="VisualsComponent" parent="PhysicsComponent" unique_id=819470101 instance=ExtResource("6_2ieo8")]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PhysicsComponent" unique_id=1693175279]
 
-[node name="InputComponent" parent="." unique_id=528544133 node_paths=PackedStringArray("physics", "health", "state_machine", "attack1", "visuals") instance=ExtResource("15_wodsf")]
+[node name="InputComponent" parent="." unique_id=528544133 node_paths=PackedStringArray("physics", "health", "state_machine", "visuals", "attack1", "attack2") instance=ExtResource("15_wodsf")]
 physics = NodePath("../PhysicsComponent")
 health = NodePath("../Health")
 state_machine = NodePath("../StateMachine")
-attack1 = NodePath("../PhysicsComponent/Attack1")
 visuals = NodePath("../PhysicsComponent/VisualsComponent")
+attack1 = NodePath("../PhysicsComponent/Attack1")
+attack2 = NodePath("../PhysicsComponent/Attack2")
 
 [connection signal="area_entered" from="PhysicsComponent/Hurtbox" to="PhysicsComponent" method="_on_hurt_box_area_entered"]
+
+[editable path="PhysicsComponent/VisualsComponent"]
