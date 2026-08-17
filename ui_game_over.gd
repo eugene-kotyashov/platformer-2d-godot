@@ -2,7 +2,6 @@ extends CanvasLayer
 
 
 @export var button: Button
-@export var player: PhysicsComponent
 
 func _on_player_health_changed(current_health: float, max_health: float):
 	visible = current_health <= 0

@@ -44,6 +44,7 @@ attack={
 2d_physics/layer_5="enemy hurt"
 2d_physics/layer_6="player attack "
 2d_physics/layer_7="enemy attack"
+2d_physics/layer_8="level exit"
 
 [physics]
 

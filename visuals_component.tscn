@@ -14,6 +14,3 @@ hframes = 9
 vframes = 7
 frame = 18
 region_rect = Rect2(0, 287.601, 598.272, 108.483)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1094680108]
-limit_enabled = false

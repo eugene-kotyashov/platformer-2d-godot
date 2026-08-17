@@ -7,11 +7,12 @@ signal death
 var _current : float = 100
 @export var current : float = 100:
 	set(value):
-		if _current != value:
-			_current = clampf(value, 0, max_health)
+		var clamped = clampf(value, 0, max_health)
+		if _current != clamped:
+			_current = clamped
 			emit_signal("health_changed", _current, max_health)
-		if _current == 0:
-			emit_signal("death")
+			if _current == 0:
+				emit_signal("death")
 	get:
 		return _current
 

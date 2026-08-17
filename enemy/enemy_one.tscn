@@ -23,14 +23,14 @@ height = 20.0
 radius = 9.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v80ua"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfmxp"]
 radius = 14.0
 height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rnj5"]
 radius = 69.00725
 
-[sub_resource type="Animation" id="Animation_8t03j"]
+[sub_resource type="Animation" id="Animation_fv2he"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -54,10 +54,10 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_c35mf"]
+[sub_resource type="Animation" id="Animation_5smuj"]
 resource_name = "air"
 length = 0.73333335
 tracks/0/type = "value"
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_2ieo8"]
+[sub_resource type="Animation" id="Animation_y5ved"]
 resource_name = "attack1"
 length = 1.2
 tracks/0/type = "value"
@@ -95,13 +95,13 @@ tracks/1/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667, 0.56666666, 0.93333334, 1.1),
+"times": PackedFloat32Array(0, 0.56666666, 0.93333334, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true, true, false]
+"values": [true, false, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_e7oew"]
+[sub_resource type="Animation" id="Animation_kv3aw"]
 resource_name = "death"
 length = 0.6666667
 tracks/0/type = "value"
@@ -117,7 +117,7 @@ tracks/0/keys = {
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5)]
 }
 
-[sub_resource type="Animation" id="Animation_tqiix"]
+[sub_resource type="Animation" id="Animation_o7u2a"]
 resource_name = "hurt"
 length = 0.8
 tracks/0/type = "value"
@@ -133,7 +133,7 @@ tracks/0/keys = {
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_wodsf"]
+[sub_resource type="Animation" id="Animation_ijoax"]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -148,7 +148,7 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_32hag"]
+[sub_resource type="Animation" id="Animation_j8kkg"]
 resource_name = "walk"
 length = 0.96666664
 loop_mode = 1
@@ -165,83 +165,79 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvxpb"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yh4yk"]
 _data = {
-&"RESET": SubResource("Animation_8t03j"),
-&"air": SubResource("Animation_c35mf"),
-&"attack1": SubResource("Animation_2ieo8"),
-&"death": SubResource("Animation_e7oew"),
-&"hurt": SubResource("Animation_tqiix"),
-&"idle": SubResource("Animation_wodsf"),
-&"walk": SubResource("Animation_32hag")
+&"RESET": SubResource("Animation_fv2he"),
+&"air": SubResource("Animation_5smuj"),
+&"attack1": SubResource("Animation_y5ved"),
+&"death": SubResource("Animation_kv3aw"),
+&"hurt": SubResource("Animation_o7u2a"),
+&"idle": SubResource("Animation_ijoax"),
+&"walk": SubResource("Animation_j8kkg")
 }
 
-[node name="EnemyOne" type="Node2D" unique_id=1093912640]
+[node name="EnemyOne" type="Node2D" unique_id=116533183]
 
-[node name="PhysicsComponent" type="CharacterBody2D" parent="." unique_id=126935863 node_paths=PackedStringArray("health", "state_machine")]
+[node name="PhysicsComponent" type="CharacterBody2D" parent="." unique_id=1067455240 node_paths=PackedStringArray("health", "state_machine")]
 collision_layer = 8
-collision_mask = 3
 script = ExtResource("1_1rnj5")
 health = NodePath("../HealthComponent")
 state_machine = NodePath("../StateMachine")
 metadata/_custom_type_script = "uid://bkjioblpd0a5h"
 
-[node name="Hurtbox" type="Area2D" parent="PhysicsComponent" unique_id=1733342543]
+[node name="Hurtbox" type="Area2D" parent="PhysicsComponent" unique_id=1101534915]
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Hurtbox" unique_id=1623137129]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Hurtbox" unique_id=86333773]
 shape = SubResource("CapsuleShape2D_hg6s5")
 debug_color = Color(0.9250688, 0.25580782, 0.2590299, 0.41960785)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent" unique_id=1546610302]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent" unique_id=1964778960]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_sh265")
 
-[node name="Attack1" type="Node2D" parent="PhysicsComponent" unique_id=1308931939 node_paths=PackedStringArray("state", "player", "attack_target_in_range")]
+[node name="Attack1" type="Node2D" parent="PhysicsComponent" unique_id=421742924 node_paths=PackedStringArray("state", "player", "attack_target_in_range")]
 script = ExtResource("2_0b0vg")
 damage = 10.0
 state = NodePath("Attack1")
 player = NodePath("../../AnimationComponent")
 attack_target_in_range = NodePath("AttackTargetInRange")
 
-[node name="AttackArea" type="Area2D" parent="PhysicsComponent/Attack1" unique_id=2052053741]
+[node name="AttackArea" type="Area2D" parent="PhysicsComponent/Attack1" unique_id=2025282502]
 position = Vector2(8, 0)
 collision_layer = 64
 collision_mask = 0
 monitoring = false
-monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Attack1/AttackArea" unique_id=244677519]
-shape = SubResource("CapsuleShape2D_v80ua")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/Attack1/AttackArea" unique_id=881231815]
+shape = SubResource("CapsuleShape2D_gfmxp")
+disabled = true
 debug_color = Color(0.9482767, 0.19647244, 0.3089261, 0.41960785)
 
-[node name="Attack1" type="Node" parent="PhysicsComponent/Attack1" unique_id=1961741974]
+[node name="Attack1" type="Node" parent="PhysicsComponent/Attack1" unique_id=1895998200]
 script = ExtResource("3_1rnj5")
 animation_name = &"attack1"
 duration_sec = 1.2
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="AttackTargetInRange" type="RayCast2D" parent="PhysicsComponent/Attack1" unique_id=2089561117]
+[node name="AttackTargetInRange" type="RayCast2D" parent="PhysicsComponent/Attack1" unique_id=792051380]
 target_position = Vector2(20, 0)
 collision_mask = 4
 collide_with_areas = true
 
-[node name="VisualsComponent" type="Node2D" parent="PhysicsComponent" unique_id=819470101 node_paths=PackedStringArray("sprites")]
+[node name="VisualsComponent" type="Node2D" parent="PhysicsComponent" unique_id=1159324680 node_paths=PackedStringArray("sprites")]
 script = ExtResource("3_1upqq")
 sprites = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://gnttwfynuep"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsComponent/VisualsComponent" unique_id=1740052386]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsComponent/VisualsComponent" unique_id=263746387]
 texture = ExtResource("4_pscww")
 hframes = 8
 vframes = 6
 frame = 16
 region_rect = Rect2(0, 287.601, 598.272, 108.483)
 
-[node name="Camera2D" type="Camera2D" parent="PhysicsComponent/VisualsComponent" unique_id=1094680108]
-limit_enabled = false
-
-[node name="AIComponent" type="Node2D" parent="PhysicsComponent" unique_id=778137354 node_paths=PackedStringArray("attack1", "health", "physics", "visuals", "state_machine")]
+[node name="AIComponent" type="Node2D" parent="PhysicsComponent" unique_id=908750460 node_paths=PackedStringArray("attack1", "health", "physics", "visuals", "state_machine")]
 script = ExtResource("6_1rnj5")
 attack1 = NodePath("../Attack1")
 health = NodePath("../../HealthComponent")
@@ -251,35 +247,35 @@ state_machine = NodePath("../../StateMachine")
 chase_x_dist_threshold = 5.0
 metadata/_custom_type_script = "uid://cvjn61cvxl8on"
 
-[node name="DownRightCast" type="RayCast2D" parent="PhysicsComponent/AIComponent" unique_id=1889635251]
+[node name="DownRightCast" type="RayCast2D" parent="PhysicsComponent/AIComponent" unique_id=626789033]
 position = Vector2(10, 1)
 target_position = Vector2(0, 13)
 
-[node name="DownLeftCast" type="RayCast2D" parent="PhysicsComponent/AIComponent" unique_id=383792256]
+[node name="DownLeftCast" type="RayCast2D" parent="PhysicsComponent/AIComponent" unique_id=621723279]
 position = Vector2(-10, 0)
 target_position = Vector2(0, 14)
 
-[node name="TargetDetectionArea" type="Area2D" parent="PhysicsComponent/AIComponent" unique_id=827907251]
+[node name="TargetDetectionArea" type="Area2D" parent="PhysicsComponent/AIComponent" unique_id=1040882456]
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/AIComponent/TargetDetectionArea" unique_id=1721998986]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsComponent/AIComponent/TargetDetectionArea" unique_id=794614183]
 shape = SubResource("CircleShape2D_1rnj5")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1586826953]
+[node name="HealthComponent" type="Node" parent="." unique_id=1110837952]
 script = ExtResource("5_0qd4p")
 metadata/_custom_type_script = "uid://dm6b5n68jgs2"
 
-[node name="AnimationComponent" type="Node" parent="." unique_id=570107155 node_paths=PackedStringArray("player")]
+[node name="AnimationComponent" type="Node" parent="." unique_id=1494233956 node_paths=PackedStringArray("player")]
 script = ExtResource("6_pscww")
 player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://i80fc4mkevqy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationComponent" unique_id=1493199722]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationComponent" unique_id=1754598903]
 root_node = NodePath("../../PhysicsComponent/Attack1")
-libraries/ = SubResource("AnimationLibrary_hvxpb")
+libraries/ = SubResource("AnimationLibrary_yh4yk")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1052981872 node_paths=PackedStringArray("char_body", "animations", "current_state", "idle", "walk", "air", "jump", "hurt", "death", "attack1")]
+[node name="StateMachine" type="Node" parent="." unique_id=748177304 node_paths=PackedStringArray("char_body", "animations", "current_state", "idle", "walk", "air", "jump", "hurt", "death", "attack1")]
 script = ExtResource("7_jm3ow")
 char_body = NodePath("../PhysicsComponent")
 animations = NodePath("../AnimationComponent")
@@ -292,33 +288,33 @@ hurt = NodePath("Hurt")
 death = NodePath("Death")
 attack1 = NodePath("../PhysicsComponent/Attack1/Attack1")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=2134773336]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=646054653]
 script = ExtResource("8_0b0vg")
 animation_name = &"idle"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Walk" type="Node" parent="StateMachine" unique_id=838431843]
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1321937266]
 script = ExtResource("9_1rnj5")
 animation_name = &"walk"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Air" type="Node" parent="StateMachine" unique_id=138366025]
+[node name="Air" type="Node" parent="StateMachine" unique_id=133642683]
 script = ExtResource("10_h5s1s")
 animation_name = &"air"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=1061811029]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=654302063]
 script = ExtResource("11_2bon3")
 animation_name = &"jump"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Hurt" type="Node" parent="StateMachine" unique_id=563436643]
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=1995459071]
 script = ExtResource("12_pdr7t")
 animation_name = &"hurt"
-duration_sec = 0.8
+duration_sec = 0.4
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=697728594]
+[node name="Death" type="Node" parent="StateMachine" unique_id=68546181]
 script = ExtResource("13_xr47o")
 animation_name = &"death"
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
