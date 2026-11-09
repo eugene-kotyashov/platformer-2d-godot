@@ -29,6 +29,7 @@ func on_enter() -> void:
 	
 	
 func on_exit() -> void:
+	if animations == null:
+		return
 	animations.play("RESET")
-	#print("reset played")
 	

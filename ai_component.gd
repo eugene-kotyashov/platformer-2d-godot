@@ -48,18 +48,10 @@ func chase_target() -> void:
 
 
 func _on_target_detection_area_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent().get_parent()
-	print(get_parent().get_parent().name, "'s target detection",
-	 " entered by ", parent.name,"'s ", area.name )
 	if area.get_parent() is PhysicsComponent:
 		target_player = area.get_parent() as PhysicsComponent
-		print("targeting ", target_player.get_parent().name)
 
 
 func _on_target_detection_area_area_exited(area: Area2D) -> void:
-	var parent = area.get_parent().get_parent()
-	print(get_parent().get_parent().name, "'s target detection",
-	 " exited by ", parent.name,"'s ", area.name )
 	if area.get_parent() == target_player:
 		target_player = null
-		print("target cleared")

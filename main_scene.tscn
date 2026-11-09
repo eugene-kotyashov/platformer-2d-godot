@@ -346,6 +346,7 @@ position = Vector2(220, 8)
 shape = SubResource("WorldBoundaryShape2D_4ptq8")
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1945028288 node_paths=PackedStringArray("button")]
+process_mode = 3
 visible = false
 script = ExtResource("5_8mm7a")
 button = NodePath("MarginContainer/CenterContainer/VBoxContainer/Button")
@@ -378,6 +379,7 @@ layout_mode = 2
 text = "Restart"
 
 [node name="StatusScreen" type="CanvasLayer" parent="." unique_id=1967492462 node_paths=PackedStringArray("health_bar")]
+process_mode = 3
 script = ExtResource("4_d5x1h")
 health_bar = NodePath("MarginContainer/VBoxContainer/ProgressBar")
 

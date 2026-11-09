@@ -5,7 +5,10 @@ extends State
 func _ready() -> void:
 	name="jump_state"
 
-func update(_delta: float) -> void:
-	print("jumping")
-	char_body.velocity.y += jump_speed
+func on_enter() -> void:
+	super.on_enter()
+	char_body.velocity.y = jump_speed
+
+func update(delta: float) -> void:
+	char_body.velocity += char_body.gravity * delta
 	char_body.move_and_slide()
