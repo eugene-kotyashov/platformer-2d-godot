@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Enemy air movement now uses the enemy's own `move_direction` instead of the player's keyboard input.
 - Jump applies its impulse once on state entry instead of adding to velocity every frame.
 - Gravity is now applied consistently in the idle, walk, and jump states.
+- Raised the player's jump height (roughly 112 px to 174 px) and gravity (100 to 450, set through `PlayerController`) for a higher, snappier jump; softened the variable-jump cut from 0.4 to 0.5.
 - Player death pauses the game after the death animation finishes; the game-over and status layers use `PROCESS_MODE_ALWAYS` so the Restart button still works while paused.
 - Defeated enemies disable their hurtbox and attack, then are removed from the scene after their death animation.
 - Removed debug `print` calls from hot code paths.

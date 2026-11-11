@@ -13,7 +13,7 @@ class_name InputComponent
 ## How early a jump press is remembered before landing.
 @export var jump_buffer_time: float = 0.12
 ## Upward velocity is multiplied by this when the jump button is released early.
-@export var jump_release_multiplier: float = 0.4
+@export var jump_release_multiplier: float = 0.5
 
 var _time_since_on_floor: float = 0.0
 var _jump_buffer_left: float = 0.0

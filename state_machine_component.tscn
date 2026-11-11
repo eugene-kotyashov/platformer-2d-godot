@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Jump" type="Node" parent="." unique_id=1061811029]
 script = ExtResource("5_jwd0y")
-jump_speed = -150.0
+jump_speed = -400.0
 metadata/_custom_type_script = "uid://bw072uc2vjp1u"
 
 [node name="Hurt" type="Node" parent="." unique_id=563436643]
