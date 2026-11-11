@@ -23,13 +23,15 @@ func _physics_process(_delta: float) -> void:
 	if physics.is_on_floor():
 		if attack1.attack_target_in_range.is_colliding():
 			state_machine.transition(state_machine.attack1)
-		if !right_cast.is_colliding() && left_cast.is_colliding():
+		if physics.is_on_wall():
+			# Bumped into a wall (e.g. the level edge): turn around.
+			physics.move_direction *= -1
+		elif !right_cast.is_colliding() && left_cast.is_colliding():
 			physics.move_direction = -1
-		if right_cast.is_colliding() && !left_cast.is_colliding():
+		elif right_cast.is_colliding() && !left_cast.is_colliding():
 			physics.move_direction = 1
 		chase_target()
 		change_dir()
-		#state_machine.transition("walk_state")
 		state_machine.transition(state_machine.walk)
 	else:
 		state_machine.transition(state_machine.air)

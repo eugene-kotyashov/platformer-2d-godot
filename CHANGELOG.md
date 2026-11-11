@@ -30,3 +30,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Guarded `State.on_exit()` and `StateMachine._ready()` against null animation and attack references.
 - Enemy `Jump` state no longer references a missing animation clip.
 - Cleared editor warnings for unused parameters.
+- Enemies now turn around when they reach the level's left or right wall instead of walking into it (`AIComponent`).
