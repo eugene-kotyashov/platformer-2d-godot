@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://diu0xdcj5g6qx" path="res://ui_game_over.gd" id="5_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dbqq6s5sy7bko" path="res://enemy/enemy_one.tscn" id="7_66tet"]
 [ext_resource type="Texture2D" uid="uid://cwsi0gpctjdat" path="res://art/flag animation.png" id="7_nfk4m"]
+[ext_resource type="PackedScene" path="res://ui_end_screen.tscn" id="9_win"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb12i"]
 texture = ExtResource("3_8mm7a")
@@ -345,11 +346,21 @@ shape = SubResource("WorldBoundaryShape2D_f7g2b")
 position = Vector2(220, 8)
 shape = SubResource("WorldBoundaryShape2D_4ptq8")
 
-[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1945028288 node_paths=PackedStringArray("button")]
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1945028288 node_paths=PackedStringArray("restart_button")]
 process_mode = 3
 visible = false
 script = ExtResource("5_8mm7a")
-button = NodePath("MarginContainer/CenterContainer/VBoxContainer/Button")
+pause_delay = 1.0
+restart_button = NodePath("MarginContainer/CenterContainer/VBoxContainer/Button")
+
+[node name="Background" type="ColorRect" parent="GameOverScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.101960786, 0.10980392, 0.14901961, 0.64705884)
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOverScreen" unique_id=1257421500]
 anchors_preset = 8
@@ -357,10 +368,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -70.0
+offset_top = -50.0
+offset_right = 70.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -369,14 +380,19 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/MarginContainer/CenterContainer" unique_id=2118227212]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer" unique_id=1861343832]
+[node name="Title" type="Label" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer" unique_id=1861343832]
 layout_mode = 2
 text = "GAME OVER"
 
 [node name="Button" type="Button" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer" unique_id=79496955]
 layout_mode = 2
 text = "Restart"
+
+[node name="QuitButton" type="Button" parent="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
 
 [node name="StatusScreen" type="CanvasLayer" parent="." unique_id=1967492462 node_paths=PackedStringArray("health_bar")]
 process_mode = 3
@@ -436,10 +452,14 @@ position = Vector2(218.36194, 138.78882)
 [node name="EnemyOne3" parent="." unique_id=562556913 instance=ExtResource("7_66tet")]
 position = Vector2(123.4277, 214.7362)
 
+[node name="WinScreen" parent="." instance=ExtResource("9_win")]
+title = "YOU WIN!"
+
 [connection signal="death" from="EnemyOne/HealthComponent" to="StatusScreen" method="_on_enemy_death"]
 [connection signal="health_changed" from="Player/Health" to="GameOverScreen" method="_on_player_health_changed"]
 [connection signal="health_changed" from="Player/Health" to="StatusScreen" method="_on_player_health_changed"]
 [connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/Button" to="GameOverScreen" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/MarginContainer/CenterContainer/VBoxContainer/QuitButton" to="GameOverScreen" method="_on_quit_button_pressed"]
 [connection signal="area_entered" from="LevelExit" to="." method="_on_level_exit_area_entered"]
 [connection signal="death" from="EnemyOne2/HealthComponent" to="StatusScreen" method="_on_enemy_death"]
 [connection signal="death" from="EnemyOne4/HealthComponent" to="StatusScreen" method="_on_enemy_death"]

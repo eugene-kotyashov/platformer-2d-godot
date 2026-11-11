@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var levelExit=$LevelExit
+const EndScreenScript := preload("res://ui_end_screen.gd")
+
+@onready var win_screen: EndScreenScript = $WinScreen
 
 
 func _on_level_exit_area_entered(_area: Area2D) -> void:
-	get_tree().paused = false  # Unpause first
-	get_tree().reload_current_scene()  # Restarts main scene
+	win_screen.show_screen()
