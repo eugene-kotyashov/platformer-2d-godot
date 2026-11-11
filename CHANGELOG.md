@@ -31,3 +31,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Enemy `Jump` state no longer references a missing animation clip.
 - Cleared editor warnings for unused parameters.
 - Enemies now turn around when they reach the level's left or right wall instead of walking into it (`AIComponent`).
+- No more grey void at the level edges: the camera is clamped to the level bounds and the project's default clear colour is set to the sky blue.

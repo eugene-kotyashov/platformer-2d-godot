@@ -442,6 +442,10 @@ frame_progress = 0.36862516
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1792176213]
 position = Vector2(159, 277)
+limit_left = 0
+limit_top = 0
+limit_right = 504
+limit_bottom = 402
 
 [node name="EnemyOne2" parent="." unique_id=1361654165 instance=ExtResource("7_66tet")]
 position = Vector2(378.98038, 186.51251)
